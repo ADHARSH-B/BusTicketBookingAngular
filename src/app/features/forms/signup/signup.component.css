@@ -1,0 +1,162 @@
+
+#SignUpform {
+    display: block;
+    place-items: center;
+    padding-top: 10%;
+     z-index: 6; 
+     position: absolute;
+     top:-8%;
+     left:25%;
+  
+}
+.backdrop {
+    /* backdrop-filter: blur(5px); */
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 5 !important;
+    background: black;
+    opacity: 0.5;
+    width: 100vw;
+}
+.container {
+    background-color: #fff;
+    width: 750px;
+    height: 550px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+  
+    place-items: center;
+    line-height: 1.5;
+    animation: formmovedown 1s 1;
+    animation-timing-function:  linear;
+    /* z-index: 7;  */
+    /* z-index: 0; */
+    /* transform: translateY(10%); */
+  }
+  .container-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: #fff;
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-items: center;
+    font-size: 1.7rem;
+    color: #2E4052;
+    border-radius: 50%;
+   
+    cursor: pointer;
+  }
+
+
+.container img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+    align-content: center;
+  }
+  .container-text {
+    padding: 10px 40px 10px 10px;
+  }
+  
+  .container-text h2 {
+    font-size: 1.2rem;
+    color: #1A2250;
+  }
+  
+  .container-text p {
+    font-size: 14px;
+    color: #3B4169;
+    margin: 10px 0;
+  }
+  
+  .container-text input
+   {
+    width: 100%;
+    border: none;
+    padding: 14px;
+    border-radius: 3px;
+  }
+  
+  .container-text input {
+    border: 2px solid #DADDEC;
+    margin: 5px 0 10px;
+    font-size: 1rem;
+    color: #656880;
+    outline:none;
+  }
+  button{
+      width: 100%!important;
+  }
+  /* .container-text button { */
+    /* background-image: linear-gradient(to right, #89CAFF, #6589FF); */
+    /* background-color: black;
+    display: block;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+   
+  } */
+  .footer{
+      padding-top:10px
+  }
+  .container input{
+    background-color:lightgray
+  }
+  .container input:focus{
+    box-shadow: 0 0 10px black;
+  }
+  
+  
+  @media  screen and (max-width:750px){
+    .container{
+      width: 90vw;
+      height: auto;
+      margin: 50%;
+      grid-template-columns: 1fr ;
+      margin-left: -1%;
+      padding: 24px;
+     
+    }
+    .container img{
+      display: none
+    }
+    .containernew{
+      width: 90vw;  
+      height: 50vh
+    }
+   .icons-wrapper{
+     display: none;
+   } 
+  }
+  
+  
+  @keyframes formmovedown{
+    0% {
+      top: -70px;
+    }
+    50%{
+      top:-20px;
+    }
+  
+     100% {
+      top: 5px;
+    }
+  }
+  /* @keyframes formmoveup{
+    0% {
+      top: -10px;
+    }
+    50%{
+      top:-50px;
+    }
+  
+     100% {
+      top: -70px;
+    }
+  } */

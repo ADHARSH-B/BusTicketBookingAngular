@@ -1,0 +1,28 @@
+<div class="backdrop" *ngIf="showSignUpForm"></div>
+<div id="SignUpform" *ngIf="showSignUpForm" >
+           
+    <form  class="container"  >
+     
+      <div id="close" class="container-close" (click)="signUpFormToggleHandler()">&times;</div>
+      
+      <img
+        src="../../../assets/MyBUS.png"
+        alt="image">
+      <div class="container-text" >
+        <h2>Welcome to <em>MyBus</em>.com <br></h2>
+        <p>Sign up to book tickets,  and  get 15% Offer on all of your  bookings.</p>
+         <!-- <form class="container-text" id="login" onsubmit="event.preventDefault();submitHandler(this)">  -->
+          <input type="text" class="form-control" name="name" placeholder="Name">   
+          <input type="email" class="form-control" name="email" placeholder="Email address">
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <input type="password" class="form-control" name="confirmPassword" placeholder="ConfirmPassword">
+       
+        <button type="submit" class=" btn btn-dark" >SignUp</button>
+       
+        <div class="footer">
+       <h4  >Already have an account ?</h4>
+       <span><button class=" btn btn-dark"  (click)="loginFormToggleHandler();signUpFormToggleHandler()"  >Sign In</button></span>
+        </div>
+      </div>
+      </form>
+</div>

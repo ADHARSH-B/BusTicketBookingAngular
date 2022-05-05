@@ -1,0 +1,50 @@
+<div class="backdrop" *ngIf="showBookingsSummary" ></div>
+<div  *ngIf="showBookingsSummary"  >
+  <div class="container">
+      <div class="grid ">
+          <div class="row header">
+              Bookings Summary
+          </div>
+          <div class="row content ">
+              <div class="col col-3 ">
+            <img src="../../../assets/icons8-bus-100.png"/>
+            </div>
+            <div class="col col-4">
+                <small style="font-size: 12px;">Chennai</small>
+                <p style="font-weight: bold;">12:25AM </p>
+                <span style="color:grey">Thu, 5 May 2022</span>
+                <hr>
+               
+           </div>
+           <div class="col col-4">
+            <small>Coimbatore</small>
+            <p style="font-weight: bold;">12:25AM </p>
+                <span style="color:grey">Fri, 6 May 2022</span>
+                <hr>
+            </div>
+           <div class="col col-4 mt-4">
+               <p style="color:grey">Boarding Point & Time</p>
+               <span style="font-weight: bold;">Chandni Chowk : 12:25 AM</span>
+               <p style="color:grey" class="mt-4">Dropping Point & Time</p>
+               <span style="font-weight: bold;">Narayan Singh Circle : 05:55 AM</span>
+           </div>
+           <div class="col col-4 mt-4">
+            <p style="color:grey">Seat Number(s)</p>
+            <span style="font-weight: bold;">A1,A2,A3</span>
+            <br>
+            <br>
+           
+        </div>
+        <div class="col col-4 ">
+        <p style="font-weight: bold; color: grey;">Fare Details:</p>
+        <h4 ><span style="font-weight: bold;">TotalCost :</span> Rs 469/-</h4>
+        <div style="display: flex; ">
+        <button class="btn btn-sm btn-outline-dark mx-2" (click)="showPassengerDetailForm();canShowBookingsSummarys()" > Proceed to booking</button>
+        <button class="btn btn-sm btn-outline-danger mx-2 mt-0" (click)="canShowBookingsSummarys()"> Cancel</button>
+    </div>
+       </div>
+       </div>
+      </div>
+  </div>
+
+</div>

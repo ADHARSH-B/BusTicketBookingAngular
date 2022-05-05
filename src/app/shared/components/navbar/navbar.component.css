@@ -1,0 +1,116 @@
+*{
+    margin:0px;
+    padding: 0px;
+    /* font-family: 'Roboto-Sans' !important; */
+    box-sizing: border-box;
+  }
+  .navbar{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+   z-index: 6;
+   /* z-index: -1; */
+    /* background-color:	black; */
+    background-color: black;
+    color: white;
+    padding: 15px;
+    width: 100vw;
+    height: 50px;
+    align-content: center;
+    position:fixed;
+    left: 0;
+    opacity: 1;
+    top: 0;
+    right: 0;
+  }
+  
+  
+  .navbar a{
+  text-decoration: none;
+  color:inherit;
+  display: inline-block;
+  /* border: 1px solid white; */
+  padding: 3px;
+  border: none;
+  }
+  .navbar li ::before{
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 1px;
+    display: block;  
+    transition: width 0.3s ease;
+     bottom: 20%;
+  }
+  .navbar img{
+      display: none;
+  }
+  
+  .navbar li :hover::before{
+    width: 70px;
+    height: 1px;
+    background-color:  lightblue;  
+  }
+  
+  .logo{
+    margin-right: 50px;
+  }
+  .list{
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    padding: 10px;
+  }
+  .links{
+    padding: 5px;;
+  }
+  .button{
+    box-sizing: border-box;
+    width: 5rem;
+    height: 2rem;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    color:black;
+    background-color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-top: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px white;
+    background-color: black;
+    border: 1px solid white;
+    border: 2px solid lightblue;
+    color: white;
+  }
+  .button:hover{
+    box-shadow: 0px 0px 10px white;
+  }
+  @media  screen and (max-width:600px){
+    .menu{
+      width: 100%;
+      max-height: 100%;
+      overflow: hidden;
+    }
+    #toggler,
+  .navbar img{
+    display: block;
+  }
+  .navbar{
+    height: auto;
+  }
+    
+    .list{
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+  
+    .navbar label{
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  
+  }
