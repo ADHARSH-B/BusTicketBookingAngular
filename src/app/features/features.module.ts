@@ -1,3 +1,4 @@
+import { BusSearchModule } from './bus-search/bus-search.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormModule } from './forms/form.module';
@@ -19,7 +20,8 @@ import { FormsModule} from '@angular/forms';
   ],
   exports:[
     BusDetailsModule,
-    FormModule 
+    FormModule ,
+    BusSearchModule
   ]
 })
 export class FeaturesModule { }

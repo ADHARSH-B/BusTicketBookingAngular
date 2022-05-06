@@ -8,11 +8,14 @@ import { SharedModule } from './shared/shared.module';
 import { FeaturesModule } from './features/features.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SpinnersAngularModule } from 'spinners-angular';
+
 //  import { BusDetailsViewComponent } from './features/busDetails/components/bus-details-view/bus-details-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FeaturesModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,
+    SpinnersAngularModule,
+    // FormsModule,
     FormModule
   ],
   providers: [ ],

@@ -8,8 +8,8 @@
     top: 50%;
     transform: translate(-50%,-50%);
     background-color: white;
-    animation: formmovedown 1s 1;
-    animation-timing-function:  linear;
+    /* animation: formmovedown 1s 1;
+    animation-timing-function:  linear; */
     opacity: 2 !important;
     
    

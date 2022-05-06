@@ -18,6 +18,7 @@ export class BusDetailsViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('component mounted')
   }
   
   bookTicket(event:any){
