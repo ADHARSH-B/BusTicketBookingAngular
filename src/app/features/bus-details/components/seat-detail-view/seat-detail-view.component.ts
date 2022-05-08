@@ -11,15 +11,17 @@ import { UiServiceService } from 'src/app/core/service/components/ui/ui-service.
 export class SeatDetailViewComponent implements OnInit {
   @Input() Seats!:any;
   @Input() busId:any;
+  @Input() busDetails:any;
   seats:number[]=[];
   selectedSeats:number[]=[];
-
+  
   constructor(private busService:BusServiceService,private uiService:UiServiceService) { }
   
   
   @Output() newSeatEvent = new EventEmitter<Object>();
 
   ngOnInit(): void {
+    console.log(this.busDetails)
   }
   addSeatDetails(event:Event){
     this.seats.push(+(event.target as HTMLInputElement).innerHTML)

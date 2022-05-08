@@ -1,0 +1,78 @@
+#loginform {
+    place-items: center;
+    z-index: 6; 
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px;  
+    width: 50vw;
+    padding: 20px;
+    /* overflow: scroll; */
+    /* height: 100px; */
+    /* max-width: 500px;
+    max-height: 400px; */
+}
+.form-group{
+    padding: 10px;
+    height: 70px;
+}
+.backdrop {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 5 !important;
+    background: black;
+    opacity: 0.5;
+    width: 100vw;
+}
+input{
+    /* height: 40px; */
+}
+.container {
+    border-radius: 20px;
+    background-color: #fff;
+    position: relative;
+    animation: formmovedown 1s 1;
+    /* height: 100px; */
+    animation-timing-function:  linear;
+}
+  
+ 
+ 
+  
+  @media  screen and (max-width:750px){
+    #loginform {
+        width: 90vw;
+    }
+
+  
+  }
+  
+  
+  @keyframes formmovedown{
+    0% {
+      top: -70px;
+    }
+    50%{
+      top:-20px;
+    }
+  
+     100% {
+      top: 5px;
+    }
+  }
+  @keyframes formmoveup{
+    0% {
+      top: -10px;
+    }
+    50%{
+      top:-50px;
+    }
+  
+     100% {
+      top: -70px;
+    }
+  }

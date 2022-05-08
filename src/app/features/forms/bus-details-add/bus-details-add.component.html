@@ -1,0 +1,112 @@
+<div class="backdrop" (click)="toggleAddBusFormView()" *ngIf="showBusAddForm"></div>
+<div id="loginform" *ngIf="showBusAddForm"  >
+           
+    <form  [formGroup]="addForm" class="container"  >
+        <div class="grid">
+            <div class="row">
+                <div class="col col-6">
+                    <div class="form-group" >
+                        <label for="exampleFormControlInput1">BusOperatorName</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" formControlName="BusOperatorName" placeholder="BusOperatorName" [value]="busDetails?.busName">
+                      </div>
+                </div>
+                <div class="col col-6">
+                    <div class="form-group" >
+                        <label for="exampleFormControlInput1">BusType</label>
+                        <select class="form-control" formControlName="busType" id="exampleFormControlSelect1">
+                            <option>AC</option>
+                            <option selected="selected">NON-AC</option>
+                          </select>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">BoardingPoint</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="BoardingPoint" placeholder="BoardingPoint" [value]="busDetails?.boardingPoint">
+                      </div>
+                </div>
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">DestinationPoint</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="DestinationPoint" placeholder="DestinationPoint" [value]="busDetails?.destinationPoint">
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">SeatType</label>
+                        <select class="form-control" formControlName="seatType" id="exampleFormControlSelect1">
+                          <option>Seater</option>
+                          <option selected="selected">Sleeper</option>
+                          <option>Semi-Sleeper</option>
+                        </select>
+                      </div>
+                </div>
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">TotalSeats</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="totalSeats" placeholder="totalSeats" [value]="busDetails?.totalSeats">
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> DepartureTime</label>
+                        <input type="time" class="form-control" id="exampleFormControlInput1" formControlName="DepartureTime" placeholder="DepartureTime" [value]="busDetails?.departureTime">
+                      </div>
+                </div>
+                <div class="col col-6">         
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> ArrivalTime</label>
+                        <input type="time" class="form-control" id="exampleFormControlInput1" formControlName="ArrivalTime" placeholder="ArrivalTime" [value]="busDetails?.arrivalTime">
+                    </div>   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">AddSeats</label>
+                        <input class="form-control" type="number"   formControlName="AddSeats" id="quantity" name="quantity" min="0" max="1/0">
+                    </div>
+                </div>
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">TicketPrice</label>
+                        <input class="form-control" type="number"   formControlName="price" id="quantity" name="quantity" placeholder="TicketPrice">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> CurrentLocation</label>
+                        <input class="form-control" type="text"   formControlName="currentLocation" id="quantity" name="quantity">
+                    </div>
+                </div>
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">DepartureDate</label>
+                        <input class="form-control" type="date"   formControlName="departureDate" id="quantity" name="quantity" >
+                    </div>
+                </div>
+
+            </div>
+            
+              <div class="form-group ">
+                  <button type="button"  class="btn btn-sm btn-outline-danger mt-4 float-right " (click)="toggleAddBusFormView()" >Cancel </button>
+                  <button type="button"  class="btn btn-sm btn-outline-dark mt-4 float-right" style="margin-right: 4px;" (click)="addBus()" >AddBus </button>
+                
+              </div>
+              <br>
+           
+        </div>
+          
+          </form>
+    
+  
+</div>

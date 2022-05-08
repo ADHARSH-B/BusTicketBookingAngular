@@ -1,3 +1,4 @@
+import { httpInterceptProviders } from './core/service/components/interceptors/jwt/jwt';
 import { FormModule } from './features/forms/form.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,27 +9,30 @@ import { SharedModule } from './shared/shared.module';
 import { FeaturesModule } from './features/features.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SpinnersAngularModule } from 'spinners-angular';
-
+import { CommonModule } from '@angular/common';
+import { SpinnerCircularModule } from 'spinners-angular/spinner-circular';
+// import { FontAwesomeModule } from '@fontawesome/angular-fontawesome'
 //  import { BusDetailsViewComponent } from './features/busDetails/components/bus-details-view/bus-details-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
+ 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule ,
     FeaturesModule,
+    CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SpinnersAngularModule,
+    SpinnerCircularModule,
+    // FontAwesomeModule
     // FormsModule,
     FormModule
   ],
-  providers: [ ],
+  providers: [ httpInterceptProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

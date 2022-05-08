@@ -1,0 +1,16 @@
+*{
+padding: 0px;
+margin:0px
+}
+.container-fluid{
+    margin-top: 50px;
+}
+.sidebar{
+    background-color:#00001e ;
+    color: white;
+    height: 100vh;
+}
+.sidebar div{
+    padding: 20px;
+    cursor: pointer;
+}

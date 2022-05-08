@@ -1,5 +1,4 @@
 import { BusSearchModule } from './bus-search/bus-search.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormModule } from './forms/form.module';
 import { BusDetailsModule } from './bus-details/bus-details.module';
@@ -15,8 +14,8 @@ import { FormsModule} from '@angular/forms';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
-    ,BrowserModule
+     CommonModule
+    // BrowserModule
   ],
   exports:[
     BusDetailsModule,

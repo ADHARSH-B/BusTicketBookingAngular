@@ -19,10 +19,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     console.log('hi')
     this.loginForm=new FormGroup ({
-      userName: new FormControl (null,[Validators.required,
-      Validators.minLength(4),Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      password: new FormControl(null, [Validators.required, Validators.maxLength(9)
-      ,Validators.pattern('^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$')])
+      userName: new FormControl (null,[Validators.required]),
+      password: new FormControl(null, [Validators.required]
+      ,)
+      // Validators.pattern('^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$')]
       });
   }
 
@@ -37,14 +37,15 @@ export class LoginComponent implements OnInit {
 
   login(){
     console.log(this.loginForm)
-    if(this.loginForm.status=='INVALID'){
-      console.log(this.loginForm)
-      // this.toastr.error("Input Fields Cannot Be Empty")
-      return;
-    }
+    // if(this.loginForm.status=='INVALID'){
+    //   console.log(this.loginForm)
+    //   // this.toastr.error("Input Fields Cannot Be Empty")
+    //   return;
+    // }
   
-    this.auth.loginUser(this.loginForm.value).subscribe((data:any)=>{
-      console.log(data)
+    this.auth.loginUser(this.loginForm.value).subscribe((response:any)=>{
+      localStorage.setItem("authtoken",response.authToken)
+      console.log(response)
       // this.toastr.success('SignIn Success')
     },(error:any)=>{
       // this.toastr.error(error.error)

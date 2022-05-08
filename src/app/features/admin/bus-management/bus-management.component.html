@@ -1,0 +1,98 @@
+<div class=" float-right p-2 " >
+  
+    <button class="btn btn-dark  " (click)="addBus()">AddBus</button>
+</div>
+<div class="card table-responsive">
+    <table class="table table-sm">
+        <thead class="bg-light">
+          <tr>
+            <th>BusName</th>
+          
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th>totalSeats</th>
+            <th>SeatsBooked</th>
+            <th>seatType</th>
+            <th>BusType</th>
+            <th>DepartureTime</th>
+            <th>ArrivalTime</th>
+            <th>TicketPrice</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bus of busDetails">
+            <td>
+              <div class="d-flex align-items-center">
+                
+                <div class="ms-3">
+                  <p class="fw-bold mb-1">{{bus.busName}}</p>
+                  <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
+                </div>
+              </div>
+            </td>
+            
+            <td>
+                <p class="fw-normal mb-1" >{{bus.boardingPoint}}</p>
+                <!-- <p class="text-muted mb-0">IT department</p> -->
+              </td>
+            <td>
+                <p class="fw-normal mb-1" >{{bus.destinationPoint}}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1" >{{bus.totalSeats}}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1" >{{bus.seatsBooked}}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1" >{{bus.busSeats[0].seatType }}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1" >{{bus.busType  |uppercase}}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1" >{{bus.departureTime}}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1" >{{bus.arrivalTime}}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1">Rs {{bus.price}} /-</p>
+            </td>
+            <!-- <td>
+                <p class="fw-normal mb-1" >{{bus.arrivalTime}}</p>
+            </td>
+            <td>
+                <p class="fw-normal mb-1" >{{bus.arrivalTime}}</p>
+            </td>    -->
+            
+            
+            <!-- <td>
+              <span class="badge badge-success rounded-pill d-inline">Active</span>
+            </td>
+            <td>Senior</td> -->
+            <td>
+                <button 
+                style="margin-right: 1%;" 
+                type="button" 
+                class="btn btn-primary btn-sm btn-rounded p"
+                (click)="showBusEditDetailsForm(bus.id)"
+                >
+                 Edit 
+               </button>
+               <button
+                type="button"
+                 class="btn btn-danger btn-sm btn-rounded"
+               
+                 >
+                 Delete
+               </button>
+            </td>
+
+            
+          </tr>
+        </tbody>
+      </table>
+      <!-- <app-login></app-login>    -->
+    </div>

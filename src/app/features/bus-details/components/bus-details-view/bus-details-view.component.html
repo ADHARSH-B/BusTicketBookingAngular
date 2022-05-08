@@ -1,4 +1,9 @@
-<div class="busDetailsRoot">
+<div *ngIf="busDetails.length==0"class="spinner">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+</div>
+<div *ngIf="busDetails.length>0" class="busDetailsRoot">
     <header>
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -31,7 +36,6 @@
     
     
     <main>
-      
       <div *ngIf="busDetails">
         <div *ngFor="let bus of busDetails" class="container details">
             <div class="row">
@@ -42,7 +46,7 @@
                   </div>
                   <div class="col-2 mt-4 ">
                     <code>Departure</code>
-                    <p style="font-weight: bold;">00:25</p>
+                    <p style="font-weight: bold;">{{bus.departureTime}}</p>
                   </div>
                   <div class="col-2 mt-4 ">
                     <code>Total Duration</code>
@@ -50,7 +54,7 @@
                   </div>
                   <div class="col-2 mt-4 ">
                     <code>Arrival</code>
-                    <p style="font-weight: bold;">5:55</p>
+                    <p style="font-weight: bold;">{{bus.arrivalTime}}</p>
                   </div>
                   <div class="col-2 mt-4 ">
                     <code>Price</code>
@@ -73,14 +77,14 @@
             </div>
           </div>
             <hr *ngIf="canShowSeat(bus.id)">
-            <app-seat-detail-view *ngIf="canShowSeat(bus.id)" (newSeatEvent)="bookTicket($event)" [busId]="bus.id" [Seats]="bus.busSeats"></app-seat-detail-view>
-    
+            <app-seat-detail-view *ngIf="canShowSeat(bus.id)" (newSeatEvent)="bookTicket($event)" [busId]="bus.id" [Seats]="bus.busSeats" [busDetails]="bus"></app-seat-detail-view>
+          
     </div>
     </div>
+  
+
+
     <!-- </main> -->
     
     
     
-    
-    
-     -->

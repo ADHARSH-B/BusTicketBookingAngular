@@ -19,7 +19,7 @@ export class BusServiceService {
     const headers={ 'content-type': 'application/json'}
     console.log(date)
     console.log(`http://localhost:8080/api/v1/user/searchBuses?boardingPoint=${boardingPoint}&destinationPoint=${destinationPoint}&departureDate=${date}`)
-    return this.http.get(`http://localhost:8080/api/v1/user/searchBuses?boardingPoint=${boardingPoint}&destinationPoint=${destinationPoint}&departureDate=${date}`)
+    return this.http.get("http://localhost:8080/api/v1/user/searchBuses?boardingPoint=chennai&destinationPoint=coimbatore&departureDate=2022-05-05")
   }
 
   bookTicket(seats:any){

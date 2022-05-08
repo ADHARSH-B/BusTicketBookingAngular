@@ -8,8 +8,11 @@
      /* display: flex;
      align-items: center;
      justify-content: center; */
-     top:-8%;
-     left:25%;
+     /* top:-8%;
+     left:25%; */
+     left: 50%;
+     top: 45%;
+     transform: translate(-50%,-50%);
     
     }
     #SignUpform {
@@ -236,6 +239,10 @@
       grid-template-columns: 1fr ;
       margin-left: -1%;
       padding: 24px;
+      /* left: 50%;
+      top: 45%;
+      transform: translate(-50%,-50%); */
+     
      
     }
     .container img{

@@ -11,14 +11,21 @@ export class BusDetailsViewComponent implements OnInit {
   viewSeat:number[]=[];
   @Input() newSeatEvent!:any;
   busDetails!:any;
+  bookingsSummary={
+    
+  }
   constructor(private busService:BusServiceService) { 
-    this.busService.getBusDetails('coimbatore','chennai','2022-05-05').subscribe(data=>
-         this.busDetails= data
-        ); 
+    this.busDetails=[]
+    setTimeout(()=>{
+      this.busService.getBusDetails('coimbatore','chennai','2022-05-05').subscribe(data=>
+        this.busDetails= data
+       ); 
+    },500)
+      
   }
 
   ngOnInit(): void {
-    console.log('component mounted')
+    
   }
   
   bookTicket(event:any){

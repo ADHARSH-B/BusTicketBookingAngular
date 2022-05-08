@@ -10,14 +10,14 @@
             <img src="../../../assets/icons8-bus-100.png"/>
             </div>
             <div class="col col-4">
-                <small style="font-size: 12px;">Chennai</small>
+                <small style="font-size: 12px;">{{ bus.boardingPoint}}</small>
                 <p style="font-weight: bold;">12:25AM </p>
                 <span style="color:grey">Thu, 5 May 2022</span>
                 <hr>
                
            </div>
            <div class="col col-4">
-            <small>Coimbatore</small>
+            <small>{{bus.destinationPoint}}</small>
             <p style="font-weight: bold;">12:25AM </p>
                 <span style="color:grey">Fri, 6 May 2022</span>
                 <hr>
@@ -30,16 +30,18 @@
            </div>
            <div class="col col-4 mt-4">
             <p style="color:grey">Seat Number(s)</p>
-            <span style="font-weight: bold;">A1,A2,A3</span>
+            
+            <span style="font-weight: bold;" *ngFor="let seat of bookingSummary">
+            {{seat}},</span>
             <br>
             <br>
            
         </div>
         <div class="col col-4 ">
         <p style="font-weight: bold; color: grey;">Fare Details:</p>
-        <h4 ><span style="font-weight: bold;">TotalCost :</span> Rs 469/-</h4>
+        <h5 ><span style="font-weight: bold;">TotalCost :</span>Rs{{calculateTotalPrice(bus.price)}}/-</h5>
         <div style="display: flex; ">
-        <button class="btn btn-sm btn-outline-dark mx-2" (click)="showPassengerDetailForm();canShowBookingsSummarys()" > Proceed to booking</button>
+        <button class="btn btn-sm btn-outline-dark mx-2" (click)="bookTicket();canShowBookingsSummarys()" >BookTicket</button>
         <button class="btn btn-sm btn-outline-danger mx-2 mt-0" (click)="canShowBookingsSummarys()"> Cancel</button>
     </div>
        </div>

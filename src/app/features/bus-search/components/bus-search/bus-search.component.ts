@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class BusSearchComponent implements OnInit {
 
+  // @Output() newSeatEvent = new EventEmitter<Object>();
+
+
   constructor(private busService:BusServiceService,private router: Router) { }
 
   
