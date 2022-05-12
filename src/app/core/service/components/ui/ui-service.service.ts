@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-
+import jwtDecode from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
 export class UiServiceService {
+ 
   private showSignInForm:boolean=false;
   private showSignUpForm:boolean=false;
+  private showPassengerForm:boolean=false;
+  private showPassengerFormSubject=new Subject<any>();
   private signInsubject=new Subject<any>()
   private signUpsubject=new Subject<any>()
   private showBookingSummary:boolean=false;
@@ -19,8 +22,62 @@ export class UiServiceService {
   private busDetailsEditFormSubject=new Subject<any>();
   private busDetailsAddForm:boolean=false;
   private busDetailsAddSubject=new Subject<any>();
-
+  private _refreshRequired=new Subject<void>();
+  private _userbusDetailsRefresh=new Subject<void>();
+  private isAdminLoggenIn=false;
+  private isAdminLoggenInSubject=new Subject<boolean>();
+  private addStationForm=false;
+  private addStationSubject=new Subject<boolean>();
+  private isLoggenIn=false;
+  private isLoggenInSubject=new Subject<boolean>();
+  
   constructor() { }
+  toggleAddStation(){
+    return  this.addStationSubject.asObservable();
+  }
+  ontoggleAddStation(){
+     this.addStationForm=!this.addStationForm;
+     this.addStationSubject.next(this.addStationForm);
+  }
+  toggleIsAdminLoggenIn(){
+    return this.isAdminLoggenInSubject.asObservable()
+  }
+  toggleShowPassengerForm(){
+    return this.showPassengerFormSubject.asObservable();
+  }
+  ontoggleShowPassengerForm(){
+    this.showPassengerForm=!this.showPassengerForm
+    this.showPassengerFormSubject.next(this.showPassengerForm)
+  }
+  toggleIsLoggenIn(){
+    return this.isLoggenInSubject.asObservable()
+  }
+  ontoggleIsLoggenIn(){
+    this.isLoggenIn=!this.isLoggenIn
+    return this.isLoggenInSubject.next(this.isLoggenIn)
+  }
+  onToggleIsAdminLoggenIn(){
+    const token =localStorage.getItem("authtoken");
+     console.log(jwtDecode(token!))
+    // this.isAdminLoggenInSubject.next(this.isAdminLoggenIn)
+    if(token!=undefined && token !=null){
+      const decryptedToken:any=jwtDecode(token!)
+      // console.log(decryptedToken)
+      decryptedToken["role"].forEach((r: { authority: string; })=>{
+        if(r.authority=="ADMIN"){
+          this.isAdminLoggenInSubject.next(true)
+        }
+      })
+    }
+    
+  }
+  refreshBusDetails(){
+    return this._userbusDetailsRefresh
+  }
+  refreshRequired(){
+    return this._refreshRequired;
+  }
+
   togglebusDetailsAddForm(){
     this.busDetailsAddForm=!this.busDetailsAddForm
     this.busDetailsAddSubject.next(this.busDetailsAddForm);
@@ -80,3 +137,7 @@ export class UiServiceService {
     this.checkOutsubject.next(this.checkOut);
   }
 }
+function jwt_decode(arg0: string): any {
+  throw new Error('Function not implemented.');
+}
+

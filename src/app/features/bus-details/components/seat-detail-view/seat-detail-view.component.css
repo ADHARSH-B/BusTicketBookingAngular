@@ -3,7 +3,7 @@
     /* z-index:3; */
     /* border: 1px solid #ccc; */
     
-    
+    overflow: scroll;
 }
 .header{
     display: flex;
@@ -38,6 +38,7 @@ img{
     height: 35px;
     border: 1px solid #ccc;
     align-content: center;
+    
     background-color: grey;
     border-top-right-radius: 13px;
     padding: 10px;

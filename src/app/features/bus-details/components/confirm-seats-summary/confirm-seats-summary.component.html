@@ -11,14 +11,14 @@
             </div>
             <div class="col col-4">
                 <small style="font-size: 12px;">{{ bus.boardingPoint}}</small>
-                <p style="font-weight: bold;">12:25AM </p>
-                <span style="color:grey">Thu, 5 May 2022</span>
+                <p style="font-weight: bold;">{{bus.departureTime}}</p>
+                <span style="color:grey">{{getWeekDay(bus.departureDate)}}, 5 {{getMonth(bus.departureDate)}} 2022</span>
                 <hr>
                
            </div>
            <div class="col col-4">
             <small>{{bus.destinationPoint}}</small>
-            <p style="font-weight: bold;">12:25AM </p>
+            <p style="font-weight: bold;">{{bus.arrivalTime}} </p>
                 <span style="color:grey">Fri, 6 May 2022</span>
                 <hr>
             </div>

@@ -1,10 +1,11 @@
 *{
 padding: 0px;
-margin:0px
+margin:0px;
+width: 100%;
 }
-.container-fluid{
-    margin-top: 50px;
-}
+/* .container-fluid{ */
+    /* margin-top: 50px; */
+/* }
 .sidebar{
     background-color:#00001e ;
     color: white;
@@ -14,3 +15,7 @@ margin:0px
     padding: 20px;
     cursor: pointer;
 }
+.link{
+    text-decoration: none;
+    color: white;
+} */

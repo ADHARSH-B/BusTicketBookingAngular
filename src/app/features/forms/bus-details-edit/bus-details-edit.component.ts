@@ -3,7 +3,7 @@ import { UiServiceService } from 'src/app/core/service/components/ui/ui-service.
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup,  Validators } from '@angular/forms';
 import { AdminService } from 'src/app/core/service/components/admin/admin.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'admin-bus-details-edit',
   templateUrl: './bus-details-edit.component.html',
@@ -13,7 +13,8 @@ export class BusDetailsEditComponent implements OnInit {
   showBusEditForm!:boolean;
   editForm!:any;
   busDetails:any
-  constructor(private adminService:AdminService, private uiService:UiServiceService,private route:ActivatedRoute,private router:Router) { 
+  constructor(private adminService:AdminService, private uiService:UiServiceService,private route:ActivatedRoute,private router:Router
+    ,private toast:ToastrService) { 
     this.uiService.ontogglebusDetailsEditForm().subscribe(data=>this.showBusEditForm=data)
     this.route.queryParams.subscribe(data=>{
       if(data["busid"]!=undefined){
@@ -41,17 +42,17 @@ export class BusDetailsEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
   toggleFormView(){
     this.uiService.togglebusDetailsEditForm();
     
-    this.router.navigateByUrl('/admin-dashboard')
   }
   updateForm(busid:any){
     this.adminService.updateBusDetails(busid,this.editForm.value).subscribe(data=>{
-      console.log("updating done")
+      this.toast.success("Bus Details Updation Success!")
+      // console.log("updating done")
+      // this.router.navigate(['/admin-dashboard'])
     })
   }
   }

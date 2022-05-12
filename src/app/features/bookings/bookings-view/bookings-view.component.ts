@@ -1,17 +1,18 @@
 import { BusServiceService } from './../../../core/service/components/bus/bus-service.service';
 import { Component, OnInit } from '@angular/core';
-
+import jwtDecode from 'jwt-decode';
 @Component({
   selector: 'app-bookings-view',
   templateUrl: './bookings-view.component.html',
   styleUrls: ['./bookings-view.component.css']
 })
 export class BookingsViewComponent implements OnInit {
-
+  user!:any;
   constructor(private busService:BusServiceService) { }
   bookings!:any;
   ngOnInit(): void {
-    this.busService.getBookingDetails().subscribe(value=>{
+    this.user=jwtDecode(localStorage.getItem("authtoken")!)
+    this.busService.getBookingDetails(this.user.sub).subscribe(value=>{
       console.log(value)
       this.bookings=value
       console.log(this.bookings[0].bookingDate)

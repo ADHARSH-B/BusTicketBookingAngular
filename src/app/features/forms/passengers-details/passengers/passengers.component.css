@@ -1,0 +1,32 @@
+.container-fluid{
+    /* position: absolute;
+    left: 50vw;
+    height: 100vh;
+    z-index: 100; */
+   width: 50%;
+   align-items: flex-start;
+    z-index: 100;
+   
+}
+/* .main{
+    display: flex;
+    align-content: flex-end;
+} */
+.backdrop {
+    /* backdrop-filter: blur(5px); */
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 5 !important;
+    background: black;
+    opacity: 0.6;
+    width: 100vw;
+}
+
+@media screen and (max-width:600px) {
+    .container-fluid{
+        left: 30%;
+    }
+}

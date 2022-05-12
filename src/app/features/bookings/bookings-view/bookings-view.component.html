@@ -1,5 +1,5 @@
-<div class="container" *ngFor="let booking of bookings" >
-    <div class="grid">
+<div class="container "  style="width:90vw;" *ngFor="let booking of bookings" >
+    <div class="grid ">
         <div class="row">
             <div class="col">
                 <small>Booking-id<span class="text-muted fw-normal"> :{{booking.id}}</span></small>
@@ -7,21 +7,21 @@
          </div>
          <div class="row ">
           
-             <div class="col col-2 p-2 ">
+             <div class="col col-md-2 p-2 ">
                 <i class="fa fa-area-chart"></i>
                 <small>{{booking.busDetails.boardingPoint |uppercase }}</small>
                 <p style="font-weight: bold; font-size: 12px;">May 7,2022</p>
                      <hr>
              </div>
-             <div class="col col-2 p-3">
+             <div class="col col-md-2 p-3">
                 <i class="fa fa-2x fa-arrow-right"></i>
                 <hr>
              </div>
-             <div class="col col-1 p-3 " >
+             <div class="col col-md-1 p-3 " >
                 
                 <i class="fa fa-2x fa-arrow-right"></i>
              </div>
-             <div class="col col-4 p-2">
+             <div class="col col-md-4 p-2">
                 <i class="fa fa-area-chart"></i>
                 <small>{{booking.busDetails.destinationPoint | uppercase}}</small>
                 
@@ -29,41 +29,41 @@
                
                 <hr>
               </div>
-              <div class="col col-3 " style="display:flex; align-items: center; justify-content: center;">
+              <div class="col col-md-3 " style="display:flex; align-items: center; justify-content: center;">
                 <img src="../../../assets/icons8-bus-100.png"/>
                 </div>
              
               
          </div>
          <div class="row ">
-             <div class="col col-2 p-2">
+             <div class="col col-md-2 p-2">
                   <small><span class="text-muted">BusOperatorName: </span> <span style="font-weight:bold"> {{booking.busDetails.busName }} </span></small>
              </div>
-             <div class="col col-2 p-2">
+             <div class="col col-md-2 p-2">
                 <small><span class="text-muted">BusType: </span> <span style="font-weight:bold">{{booking.busDetails.busType| uppercase}}</span> </small>
            </div>
-           <div class="col col-2 p-2">
+           <div class="col col-md-2 p-2">
                <!-- <small>BusType: Ac</small> -->
            </div>
-           <div class="col col-2 p-2">
+           <div class="col col-md-2 p-2">
             <small><span class="text-muted">SeatsBooked: </span> <span  *ngFor="let seat of booking.bookedSeats" style="font-weight:bold">{{seat.id}}<small><Strong> ({{seat.seatType}})</Strong></small></span> </small>
         </div>
-        <div class="col col-2 p-2">
+        <div class="col col-md-2 p-2">
             <small><span class="text-muted">TotalCost: </span> <span style="font-weight:bold">Rs {{booking.totalCost}} /-</span></small>
         </div>
 
          </div>
-        <div class="row">
-            <div class="col col-6 p-2">
+        <div class="row ">
+            <div class="col col-md-6 p-2">
                 <small><span class="text-muted">BoardingStatus: </span>  <span class="badge  badge-success">Boarded</span></small>
            </div>
-           <div class="col col-2 ">
+           <div class="col col-md-2 ">
             <small> <span class="text-muted">TotalSeatsBooked: </span>  <span style="font-weight:bold"> {{booking.bookedSeats.length}} </span></small>
            </div>
-           <div class="col col-2 ">
+           <div class="col col-md-2 ">
             <small>  <span class="text-muted">Payment-Status: </span> <span class="badge  badge-success">Paid</span></small>
            </div>
-           <div class="col col-2 mb-2">
+           <div class="col col-md-2 mb-2">
             <div style="display: flex; justify-content: center; align-items: center; flex-flow: column; gap:10px ">
                 <small><button class="btn btn-sm btn-outline-dark">View Ticket</button></small>
                 <small><span class="text-muted">BookingStatus: </span>  <span class="badge  badge-success">Confirmed</span></small>

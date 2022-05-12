@@ -1,0 +1,70 @@
+<div class="grid" style="margin-top: 50px;">
+    <div class="row" >
+      <div class="col col-2">
+        <app-sidenav></app-sidenav>
+      </div>
+      <div class="col col-10 card"  >
+        <div class="grid" >
+            <div class="row">
+                <div class="col col-12 ">
+                    <button class="btn btn-dark p-1 float-right mb-2 mt-2 " (click)="addStation()">AddRoute</button>
+                    <app-add-routes></app-add-routes>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-12">
+                    <table class="table ">
+                        <thead class="bg-light">
+                        <tr>
+                            <th>Departure</th>
+                            <th>Arrival</th>
+                            <th>Stations</th>
+                            <th>Actions</th>
+                        </tr>
+                       </thead>
+                       <tbody>
+                       <tr *ngFor="let route of routeDetails"  >
+                        
+                            
+                        <td >
+                            <p class="fw-normal mb-1" >{{route.boardingPoint |uppercase}} </p>
+                        
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1" >{{route.destinationPoint |uppercase}}</p>
+                        </td>
+                        <td>
+                        <span *ngFor="let station of route.stations" >
+                            {{station.stationname |uppercase}},
+                        </span> 
+                        </td>
+    
+    
+                        <td>
+                            <button 
+                            style="margin-right: 1%;" 
+                            type="button" 
+                            class="btn btn-primary btn-sm btn-rounded p-1"
+                        >
+                            Edit 
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-danger btn-sm btn-rounded p-1"
+                        
+                            >
+                            Delete
+                        </button>
+                        </td>
+    
+                        
+                    </tr>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+       
+      </div>
+    </div>
+</div>

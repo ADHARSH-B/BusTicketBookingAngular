@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
+import { from, Observable, tap } from 'rxjs';
+import { UiServiceService } from '../ui/ui-service.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private uiService:UiServiceService) { }
 
   getAllUsers():Observable<any>{
     return this.http.get<any>("http://localhost:8080/api/v1/admin/allUsers");
@@ -49,12 +50,6 @@ export class AdminService {
     })
   }
   updateBusDetails(id:any,form:any){
-    console.log(id)
-    console.log(form.BusOperatorName)
-    console.log(form)
-//  BusOperatorName:any, BoardingPoint:any,
-    // DestinationPoint:any,SeatType:any ,TotalSeats:any,DepartureTime:any,
-    // ArrivalTime:any
     const headers={ 'content-type': 'application/json'}
     return this.http.put<any>(`http://localhost:8080/api/v1/admin/updatebus/${id}`,{
      BusOperatorName:form.BusOperatorName,
@@ -67,8 +62,21 @@ export class AdminService {
     AddSeats:form.AddSeats,
     busType:form.busType,
     ticketPrice:form.price
+    }).pipe(tap(()=>{
+      this.uiService.refreshRequired().next()
+    }))
+  }
+
+  getAvailableRoutes(){
+    return this.http.get("http://localhost:8080/api/v1/admin/getAllRoutes")
+  }
+
+  addRoute(routeDetails:any){
+    return this.http.post("http://localhost:8080/api/v1/admin/addNewRoute",{
+      boardingPoint:routeDetails.boardingPoint,
+      destinationPoint:routeDetails.destinationPoint,
+      stations:routeDetails.stations
     })
-    
   }
 
 }

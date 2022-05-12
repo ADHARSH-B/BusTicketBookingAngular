@@ -1,13 +1,14 @@
 <header>
     <nav  id ="nav" class="navbar">
-      <a href='/home' class="logo">Logo</a>
-      <img style="width:20px;height:20px" src="../../../assets/bars.png" onclick="hamburgerTogglehandler()"/>
-      <div class="menu" id="m">
+      <a routerLink='/home' class="logo"><em>MyBus</em></a>
+      <img style="width:20px;height:20px" src="../../../assets/bars.png" (click)="hamburgerTogglehandler()"/>
+      <div class="menu" id="m" [ngStyle]="displayToggle?{'display':'block'}:{'display':'none'}">
         <ul class="list">
-          <li class="links"><a href="/bookingsDetails">Bookings</a></li>
-          <li class="links"><a href="">Offers</a></li>
-          <li class="links"><a href="">Help</a></li>
-          <button class="button" (click)="loginFormToggleHandler()">Login</button> 
+          <li class="links" *ngIf="isAdmin"><a routerLink="/admin-dashboard/busdetails">AdminDashboard</a></li>
+          <li class="links"><a routerLink="/bookingsDetails">Bookings</a></li>
+         
+          <button *ngIf="!isLoggenIn" class="button" (click)="loginFormToggleHandler()">Login</button> 
+          <button *ngIf="isLoggenIn"  class="button" (click)="logoutFormToggleHandler()">Logout</button> 
         </ul>
       </div>
       

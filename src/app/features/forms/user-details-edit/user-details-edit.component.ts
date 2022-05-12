@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UiServiceService } from 'src/app/core/service/components/ui/ui-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup,  Validators } from '@angular/forms';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'admin-user-details-edit',
   templateUrl: './user-details-edit.component.html',
@@ -16,12 +16,14 @@ export class UserDetailsEditComponent implements OnInit {
   editForm:any;
   userDetails:any;
   constructor(private uiService:UiServiceService,private route:ActivatedRoute,private router:Router,
-    private adminService:AdminService) { 
+    private adminService:AdminService,private toast:ToastrService) { 
+    
     this.uiService.ontoggleuserDetailsEditForm().subscribe(data=>this.showUserEditForm=data)
     this.route.queryParams.subscribe(data=>{
       if(data["userid"]!=undefined){
         console.log(data)
         this.adminService.getUser(data["userid"]).subscribe(user=>{
+          console.log("fetched",user)
           this.userDetails=user
           this.editForm=new FormGroup ({
             email:new FormControl(this.userDetails?.email,[Validators.required]),
@@ -40,7 +42,7 @@ export class UserDetailsEditComponent implements OnInit {
   updateForm(){
     this.adminService.updateUser(this.userDetails?.id,this.editForm.get('userName').value,
     this.editForm.get('name').value,this.editForm.get('role').value,this.editForm.get("email").value).subscribe(data=>{
-      console.log(data)
+      this.toast.success("User Updation Success")
     })
   }
   toggleFormView(){
@@ -51,7 +53,7 @@ export class UserDetailsEditComponent implements OnInit {
         console.log('form opened')
       }
     });
-    this.router.navigateByUrl('/admin-dashboard')
+    // this.router.navigateByUrl('/admin-dashboard')
   }
 
 }

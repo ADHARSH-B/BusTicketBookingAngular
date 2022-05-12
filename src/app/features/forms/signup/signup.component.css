@@ -5,8 +5,9 @@
     padding-top: 10%;
      z-index: 6; 
      position: absolute;
-     top:-8%;
-     left:25%;
+     left: 50%;
+     top: 45%;
+     transform: translate(-50%,-50%);
   
 }
 .backdrop {
@@ -106,7 +107,7 @@
       padding-top:10px
   }
   .container input{
-    background-color:lightgray
+    background-color:white
   }
   .container input:focus{
     box-shadow: 0 0 10px black;

@@ -4,7 +4,7 @@ import { UiServiceService } from 'src/app/core/service/components/ui/ui-service.
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup,  Validators } from '@angular/forms';
 import { AdminService } from 'src/app/core/service/components/admin/admin.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'admin-bus-details-add',
   templateUrl: './bus-details-add.component.html',
@@ -14,10 +14,11 @@ export class BusDetailsAddComponent implements OnInit {
   showBusAddForm!:boolean;
   addForm!:any;
   busDetails:any
-  constructor(private adminService:AdminService, private uiService:UiServiceService,private route:ActivatedRoute,private router:Router) {
-    console.log("im calling y")
+  constructor(private adminService:AdminService, private uiService:UiServiceService,private route:ActivatedRoute,private router:Router
+    ,private toast:ToastrService) {
+    
     this.uiService.ontogglebusDetailsAddForm().subscribe(data=>{
-      console.log('checking',data)
+     
       this.showBusAddForm=data
     });
     this.addForm=new FormGroup ({
@@ -46,7 +47,9 @@ export class BusDetailsAddComponent implements OnInit {
     // this.router.navigateByUrl('/admin-dashboard')
   }
   addBus(){
+    // console.log(this.addForm.value)
     this.adminService.addBus(this.addForm.value).subscribe(data=>{
+      this.toast.success("Bus Added Success !!")
       console.log(data)
     })
   }

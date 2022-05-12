@@ -20,19 +20,22 @@ export class BusSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.busSearchForm=new FormGroup ({
-      Departure: new FormControl (""),
-      Return: new FormControl(""),
-      Date:new FormControl("")
+      Departure: new FormControl (null,[Validators.required]),
+      Return: new FormControl(null,[Validators.required]),
+      Date:new FormControl(null,[Validators.required])
       });
 
   }
   searchBuses(){
-    this.busService.getBusDetails(this.busSearchForm.value.Departure,this.busSearchForm.value.Return
-      ,this.busSearchForm.value.Date).subscribe(data=>{
-        this.router.navigateByUrl('/busDetails');
-      })
+    // console.log('calling calling')
+    console.log(this.busSearchForm.value)
+    this.router.navigateByUrl(`/busDetails?boardingPoint=${this.busSearchForm.value['Departure']}&arrivalPoint=${this.busSearchForm.value['Return']}&departureDate=${this.busSearchForm.value['Date']}`
+    );
+    // this.busService.getBusDetails(this.busSearchForm.get('Departure').value,this.busSearchForm.get('Return')
+    //   ,this.busSearchForm.get('Date')).subscribe(data=>{
+    //     this.router.navigateByUrl('/busDetails');
+    //   })
       
-    
   }
 
 }

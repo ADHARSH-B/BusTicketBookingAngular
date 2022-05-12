@@ -12,15 +12,16 @@ import { UiServiceService } from 'src/app/core/service/components/ui/ui-service.
 export class LoginComponent implements OnInit {
   showLoginForm:boolean=false;
   loginForm!:any;
-  constructor(private uiService:UiServiceService,private auth:AuthServiceService) {
+  constructor(private uiService:UiServiceService,private auth:AuthServiceService
+    ,private toast:ToastrService,private authService:AuthServiceService) {
     this.uiService. onToggleSignIn().subscribe((value)=>this.showLoginForm=value)
    }
 
   ngOnInit(): void {
     console.log('hi')
     this.loginForm=new FormGroup ({
-      userName: new FormControl (null,[Validators.required]),
-      password: new FormControl(null, [Validators.required]
+      userName: new FormControl (null),
+      password: new FormControl(null
       ,)
       // Validators.pattern('^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$')]
       });
@@ -36,15 +37,27 @@ export class LoginComponent implements OnInit {
 
 
   login(){
+     
     console.log(this.loginForm)
-    // if(this.loginForm.status=='INVALID'){
-    //   console.log(this.loginForm)
-    //   // this.toastr.error("Input Fields Cannot Be Empty")
-    //   return;
-    // }
-  
+    
+    if(this.loginForm.status=='INVALID'){
+     
+       this.toast.error("Input Fields Cannot Be Empty")
+      return;
+    }
+    console.log(this.loginForm.value)
     this.auth.loginUser(this.loginForm.value).subscribe((response:any)=>{
       localStorage.setItem("authtoken",response.authToken)
+      this.toast.success("Login Success")
+      this.uiService.onToggleIsAdminLoggenIn()
+      // this.uiService.onToggleSignIn();
+      this.uiService.ontoggleIsLoggenIn();
+      // if(response["role"].forEach((r: { authority: string; })=>{
+      //   if(r.authority=="ADMIN"){
+      //     // console.log(this.authService)
+      //      this.authService.isAdminLoggenIn=true
+      //   }
+      // }))
       console.log(response)
       // this.toastr.success('SignIn Success')
     },(error:any)=>{

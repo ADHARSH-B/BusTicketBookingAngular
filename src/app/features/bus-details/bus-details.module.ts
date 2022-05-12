@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BusDetailsViewComponent } from './components/bus-details-view/bus-details-view.component';
 import { SeatDetailViewComponent } from './components/seat-detail-view/seat-detail-view.component';
- 
+import { ToastrModule } from 'ngx-toastr';
 
+// import { DateConverterPipePipe } from 'src/app/shared/components/pipes/date-converter-pipe.pipe';
 import { ConfirmSeatsSummaryComponent } from './components/confirm-seats-summary/confirm-seats-summary.component';
-import { PassengerDetailsComponent } from './components/passenger-details/passenger-details.component';
+
 import { RouterModule, Routes } from '@angular/router';
+import { FormModule } from '../forms/form.module';
 
 
 const routes: Routes = [
@@ -18,16 +20,19 @@ const routes: Routes = [
     BusDetailsViewComponent,
     SeatDetailViewComponent,
     ConfirmSeatsSummaryComponent,
-    PassengerDetailsComponent,
+
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    ToastrModule .forRoot(),
+    FormModule
+    // DateConverterPipePipe
     // SpinnerCircularModule 
   ],
   exports:[
-    // BusDetailsViewComponent,
-    PassengerDetailsComponent,
+     BusDetailsViewComponent,
+  
   ]
 })
 export class BusDetailsModule { }

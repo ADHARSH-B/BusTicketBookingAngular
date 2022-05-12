@@ -4,6 +4,7 @@
     padding-top: 10%;
      z-index: 6; 
      position: absolute;
+     /* height: 50vh; */
      /* left:250px */
      /* display: flex;
      align-items: center;
@@ -52,7 +53,7 @@
     /* transform: translateY(10%); */
   }
   .container input{
-    background-color:lightgray
+    background-color:whitesmoke
   }
   .container input:focus{
     box-shadow: 0 0 10px black;

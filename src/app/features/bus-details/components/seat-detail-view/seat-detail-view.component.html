@@ -23,19 +23,17 @@
         
         
         <div class="row" >
-            <div class="col col-1 seat"   *ngFor="let seat of Seats;" (click)="addSeatDetails($event);toggleSelectedSeats($event)"   [ngStyle]="isSeatSelected(seat.id)?{'background-color': 'blue'}: seat.booked ? {'background-color': 'grey'}:{'background-color': 'green'}"  >{{seat.id}}</div>
+            <div  class="col col-1 seat" disabled="true"  *ngFor="let seat of Seats;" (click)="addSeatDetails($event);toggleSelectedSeats($event)"   [ngStyle]="isSeatSelected(seat.id)?{'background-color': 'blue'}: seat.booked ? {'background-color': 'grey','pointer-events': 'none'}:{'background-color': 'green'}"  >{{seat.id}}</div>
         </div>
         <hr>
         <div class="row" >
             <div class="col-5">
                 <p>You Have Selected <Strong>{{seats.length}}</Strong> seats</p>
             </div>
-            <div class="col-4">
+            <div *ngIf="seats.length>0"class="col-md-4 ">
                 <button type="button" (click)="showBookingsSummary()"  style="text-align: center; float: right;" class="btn btn-outline-dark btn-sm" >Confirm Seats</button>
             </div>   
         </div>
-      
-        
     </div>
 </div>   
 </div>
