@@ -13,9 +13,11 @@ const routes: Routes = [
   .then(d=>d.BookingsModule),canActivate:[AuthguardGuard],data:['ADMIN']},
  {path:'admin-dashboard',loadChildren:()=>import('./features/admin/admin.module')
 .then(d=>d.AdminModule),canActivate:[AdminRouteGuardGuard]}, 
-{path:'admin-dashboard',loadChildren:()=>import('./features/admin/admin.module').then(d=>d.AdminModule),canActivate:[AuthguardGuard]}
+{path:'admin-dashboard',loadChildren:()=>import('./features/admin/admin.module').then(d=>d.AdminModule),canActivate:[AuthguardGuard]},
+{path:'',loadChildren:()=>import('./features/forms/form.module').then(d=>d.FormModule)}
 ,
-{ 'path':'**',redirectTo:"home",pathMatch:'full'},
+// {path:'paypal.js',loadChildren:()=>import('../app/features/payment/payment.module').then(d=>d.PaymentModule)}
+   { 'path':'**',redirectTo:"home",pathMatch:'full'},
  
 ];
 

@@ -1,3 +1,4 @@
+import { UiServiceService } from 'src/app/core/service/components/ui/ui-service.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private uiService:UiServiceService) { 
+    console.log(window.innerWidth)
+  }
+  canShowBackdrop=false;
+  
   ngOnInit(): void {
+    this.uiService.toggleSideBar().subscribe(data=>this.canShowBackdrop=data)
+  }
+  togglingSidebar(){
+    this.uiService.onToggleSidebar()
+  }
+
+  canShowToggleIcon(){
+    return window.innerWidth<=500
   }
 
 }

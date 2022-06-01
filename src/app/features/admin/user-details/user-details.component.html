@@ -1,66 +1,105 @@
 <div class="grid container-fluid" style="margin-top: 50px;">
   <div class="row">
-    <div class="col col-2 ">
+    
+    <div    class="sidebars col col-md-2 col-6 " [ngStyle]="canShowSidebar?{'display':'grid'}:{'display':'none'}">
       <app-sidenav></app-sidenav>
     </div>
- 
-  <div class="card col col-10 w-100 " >
-    <table class="table table-lg mb-0 bg-white" >
-      <thead class="bg-light">
-        <tr>
-          <th>Name</th>
-          <th>UserName</th>
-          <th>Status</th>
-          <th>Role</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let user of users">
-        <tr>
-          <td>
-            <div class="d-flex align-items-center">
-              <img
-                  src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                  alt=""
-                  style="width: 45px; height: 45px"
-                  class="rounded-circle"
-                  />
-              <div class="ms-3">
-                <p class="fw-bold mb-1">{{user.name}}</p>
-                <p class="text-muted mb-0">{{user.email}}</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p class="fw-normal mb-1" >{{user.userName}}</p>
-            <!-- <p class="text-muted mb-0">IT department</p> -->
-          </td>
-          <td>
-            <span class="badge badge-success rounded-pill d-inline p-1">Active</span>
-          </td>
-          <td *ngIf="user.roles.length==0">USER</td>
-          <td *ngFor="let role of user.roles">{{role.name}}</td>
-          <td >
-            <button 
-             style="margin-right: 1%;" 
-             type="button" 
-             class="btn btn-primary btn-sm btn-rounded p-1"
-             (click)="showEditDetailsForm(user.id)"
-             >
-              Edit 
-            </button>
-            <button
-             type="button"
-              class="btn btn-danger btn-sm btn-rounded p-1"
-              (click)="deleteUser(user.id)"
-              >
-              Delete
-            </button>
-          </td>
-        </tr>
-       
-      </tbody>
-</table>
+    
+    <div class="col col-0 col-md-2">
+
+    </div>
+  <div class=" col col-12 col-md-10  " >
+    <div class="grid ">
+      <div class="row">
+        <div class="toggler">
+          <div class="col col-2 ">
+            <i class="fas fa-bars fa-2x p-2" (click)="togglingSidebar()"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row form-search">
+        <!-- <div class="input-append">
+          <input type="text" class="input-medium search-query form-control" name="s" placeholder="Search" value="">
+          <button type="submit" class="add-on"><i class="fa fa-search"></i></button>
+         </div> -->
+        <div class="input-group col col-8 mt-2 mb-2 ml-2">
+            <input type="text" placeholder="Search Using UserName"
+            class="form-control p-2" #ref (change)="fliterByUserName(ref.value)"/>
+           <button class="btn btn-outline-dark ml-2 p-1" (click)="fliterByUserName(ref.value)">Search</button>
+        </div>
+      </div>
+      <div *ngIf="loading && users.length===0">
+        <app-loader></app-loader>
+      </div>
+      <div *ngIf="!loading && users.length==0">
+        <div class="card d-flex align-items-center p-4 ml-2 mr-2 mt-4" style="width: 97%;font-weight: bold;">
+          No Users Found :(
+        </div>
+      </div>
+      <div class="row"  *ngIf="users.length>0">
+        <div class="col col-12 ">
+          <table class="table table-reponsive table-sm" >
+            <thead class="bg-light">
+              <tr>
+                <th class="p-3">Name</th>
+                <th class="p-3">UserName</th>
+                <th class="p-3">Status</th>
+                <th class="p-3">Role</th>
+                <th class="p-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let user of users">
+              <tr>
+                <td class="p-3">
+                  <div class="d-flex align-items-center">
+                    <img
+                        src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                        alt=""
+                        style="width: 45px; height: 45px"
+                        class="rounded-circle"
+                        />
+                    <div class="ms-3">
+                      <p class="fw-bold mb-1">{{user.name}}</p>
+                      <p class="text-muted mb-0">{{user.email}}</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="p-3">
+                  <p class="fw-normal mb-1" >{{user.userName}}</p>
+                  <!-- <p class="text-muted mb-0">IT department</p> -->
+                </td>
+                <td class="p-3">
+                  <span class="badge badge-success rounded-pill d-inline p-1">Active</span>
+                </td>
+                <td *ngIf="user.roles.length==0">USER</td>
+                <td *ngFor="let role of user.roles" class="pr-3">{{role.name}}</td>
+                <td class="p-3">
+                  <button 
+                   style="margin-right: 1%;" 
+                   type="button" 
+                   class="btn btn-primary btn-sm btn-rounded p-1 "
+                   (click)="showEditDetailsForm(user.id)"
+                   >
+                    Edit 
+                  </button>
+                  <button
+                   type="button"
+                    class="btn btn-danger btn-sm btn-rounded p-1"
+                    (click)="deleteUser(user.id)"
+                    >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+             
+            </tbody>
+      </table>
+        </div>
+      </div>
+
+    </div>
+    
+   
   </div>
 </div>
       <!-- <app-login></app-login> -->

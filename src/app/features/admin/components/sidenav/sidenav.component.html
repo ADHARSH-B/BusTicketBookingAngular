@@ -1,17 +1,34 @@
-<div class="grid sidebar">
-    <div class="col col-12"  style="display: flex; justify-content:space-evenly" >
-        <a class="link" routerLink="/admin-dashboard/busdetails">BusManagement</a>
-          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+
+<div class="grid sidebar" style="height: 300vh;">
+    
+    <div class="arrow-icon">
+    <div  class="row " style="display: flex; justify-content: flex-end;">
+        <div class="col col-2">
+            <i class="fa fa-1x fa-arrow-left p-2" (click)="togglingSidebar()"></i>
+        </div>
+    </div>
+    </div>
+  
+
+    <div class="row" >
+        <div class="col col-12" style="display: flex; flex-wrap: wrap; gap:10px"  >
+            <a class="link" routerLink="/admin-dashboard/busdetails">BusDetails</a>
+            <i class="fa fa-bus"></i>
+        </div>
         
     </div>
-    <div class="col col-12" style="display: flex; justify-content:space-around">
-        <a class="link" routerLink="/admin-dashboard/userdetails">UserDetails</a>
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    <div class="row">
+        <div class="col col-12"  style="display: flex; flex-wrap: wrap; gap:10px"  >
+            <a class="link" routerLink="/admin-dashboard/userdetails">UserDetails</a>
+            <i class="fa fa-user" aria-hidden="true"></i>
+        </div>
     </div>
-    <div class="col col-12" style="display: flex; justify-content:space-around">
-        <a class="link" routerLink="/admin-dashboard/routeDetails">RouteDetails</a>
-        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    <div class="row">
+        <div class="col col-12"  style="display: flex; flex-wrap: wrap; gap:10px"  >
+            <a class="link" routerLink="/admin-dashboard/routeDetails">RoutesDetails</a>
+            <!-- <i class="fas fa-bars fa-1x"></i> -->
+            <i class="fa fa-route"></i>
+        </div>
     </div>
-    
     
 </div>

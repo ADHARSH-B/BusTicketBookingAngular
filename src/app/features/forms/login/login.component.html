@@ -1,5 +1,5 @@
 <div class="backdrop" *ngIf="showLoginForm"></div>
-<div id="loginform" *ngIf="showLoginForm"    >
+<div id="loginform" *ngIf="showLoginForm">
   <!-- <form  class=" container was-validated">
     <img
         src="../../../assets/MyBUS.png"
@@ -21,32 +21,41 @@
     <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form> -->
-           
-    <form  [formGroup]='loginForm' class="container  "  novalidate>
-     
-      <div id="close" class="container-close" (click)="loginFormToggleHandler()">&times;</div>
+
+  <form [formGroup]='loginForm' class="container" novalidate>
+
+    <div id="close" class="container-close" (click)="loginFormToggleHandler()">&times;</div>
+
+    <img src="../../../assets/MyBUS.png" alt="image">
+    <div class="container-text" id="needs-validation">
+      <h2>Welcome to <em>MyBus</em>.com <br></h2>
+      <p>Sign in to book tickets, and get 15% Offer on all of your bookings.</p>
+      <div class="form-group">
+        <code *ngIf="(LoginFormControl.userName.touched || submitted) && LoginFormControl.userName.errors?.required">
+          Username is required</code>
+        <input type="text" class="form-control" id="uname" formControlName='userName' placeholder="Enter username"
+          name="uname" required>
       
-      <img
-        src="../../../assets/MyBUS.png"
-        alt="image">
-      <div class="container-text" >
-        <h2>Welcome to <em>MyBus</em>.com <br></h2>
-        <p>Sign in to book tickets,  and  get 15% Offer on all of your  bookings.</p>
-       
-        <input type="text" class="form-control" id="uname" formControlName='userName' placeholder="Enter username" name="uname" required>
-        <div class="valid-feedback">Valid.</div>
-        <div class="invalid-feedback">Please fill out this field.</div>
-            
-        <input class="form-control" type="password" name="password" [ngStyle]="loginForm.get('password').errors?.pattern  && {'box-shadow': '0px 0px 5px red'}" formControlName='password' placeholder="Password" required="">
-        <div class="valid-feedback">Valid.</div>
-       <div class="invalid-feedback">Please fill out this field.</div>
-        <button (click)="login()" class="btn btn-dark" >Log In</button>
-        <div class="footer">
-        <h6 class="mb-2">Don't have an account ?   <span><button  class="btn btn-dark" (click)="loginFormToggleHandler();signUpFormToggleHandler()">Sign Up</button></span></h6>
-     
       </div>
-      
-     <br>
-    
-  
-</div>
+      <code *ngIf="(LoginFormControl.password.touched || submitted) && LoginFormControl.password.errors?.required">
+        password is required</code>
+      <!-- <code *ngIf="LoginFormControl.password.errors?.pattern">
+        Password must contain more than 8 characters, 1 numeric, 1 upper case letter, and 1 special character($@$!%*?&).</code> -->
+      <input class="form-control" type="password" name="password" 
+      formControlName='password' placeholder="Password"
+     
+        required>
+        
+      <button (click)="login()" class="btn btn-dark mt-2" type="submit">Log In</button>
+      <div class="footer">
+        <a class="btn btn-link" (click)="loginFormToggleHandler();" routerLink="/resetpassword" style="text-align: center; color: #3F3C3D;;">Forgot Password ?</a>
+        <h6 class="mb-1">Don't have an account ?</h6>
+        <a class="btn btn-dark" style="color: white" 
+              (click)="loginFormToggleHandler();signUpFormToggleHandler()">Sign Up</a>
+
+      </div>
+
+      <br>
+
+
+    </div>

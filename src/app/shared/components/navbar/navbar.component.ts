@@ -46,12 +46,18 @@ export class NavbarComponent implements OnInit {
     });
   }
   logoutFormToggleHandler(){
+    
     if(this.isAdmin){
       this.isAdmin=false
     }
     this.uiService.ontoggleIsLoggenIn()
     localStorage.removeItem("authtoken")
-    this.toast.error("Logged out!")
+    localStorage.removeItem("refreshToken")
+    this.toast.error("Logged Out")
+    if(this.router.url.startsWith("/busDetails")){
+      return
+    }
+      
     return this.router.navigateByUrl("/home")
 
   }

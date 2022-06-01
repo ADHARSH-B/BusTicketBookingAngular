@@ -9,10 +9,16 @@ import { BusDetailsAddComponent } from './bus-details-add/bus-details-add.compon
 import { ToastrModule } from 'ngx-toastr';
 import { PassengersComponent } from './passengers-details/passengers/passengers.component';
 import { AddRoutesComponent } from './add-routes/add-routes.component';
+import { ResetPasswordRequestComponent } from './reset-password-request/reset-password-request.component';
+
+
+import { Routes, RouterModule } from '@angular/router';
 
 // import { BusDetailsAddComponent } from './bus-details-add/bus-details-add.component';
 
-
+const routes: Routes = [
+  { path: 'resetpassword', component:ResetPasswordRequestComponent}
+];
 
 @NgModule({
   declarations: [
@@ -22,7 +28,9 @@ import { AddRoutesComponent } from './add-routes/add-routes.component';
     BusDetailsEditComponent,
     BusDetailsAddComponent,
     PassengersComponent,
-    AddRoutesComponent
+    AddRoutesComponent,
+    ResetPasswordRequestComponent,
+   
     
     // BusDetailsAddComponent
   ],
@@ -30,6 +38,8 @@ import { AddRoutesComponent } from './add-routes/add-routes.component';
      CommonModule,
     FormsModule,
     ToastrModule.forRoot(),
+    RouterModule.forChild(routes),
+ 
     // BrowserModule,
     ReactiveFormsModule,
    

@@ -1,20 +1,36 @@
-*{
+* {
     padding: 0px;
-    margin:0px
+    margin: 0px;
+    
+}
+
+.container-fluid {
+    margin-top: 50px;
+}
+
+.sidebar {
+    background-color: #00001e;
+    color: white;
+    /* height: 200vh; */
+    
+
+
+}
+
+.sidebar div {
+    padding: 20px;
+    cursor: pointer;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+@media screen and (min-width:900px) {
+    .arrow-icon{
+        display: none;
     }
-    .container-fluid{
-        margin-top: 50px;
-    }
-    .sidebar{
-        background-color:#00001e ;
-        color: white;
-        height: 100vh;
-    }
-    .sidebar div{
-        padding: 20px;
-        cursor: pointer;
-    }
-    .link{
-        text-decoration: none;
-        color: white;
-    }
+}
+
+

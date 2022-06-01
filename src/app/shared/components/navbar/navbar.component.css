@@ -3,6 +3,8 @@
     padding: 0px;
     /* font-family: 'Roboto-Sans' !important; */
     box-sizing: border-box;
+    
+    overflow-x: hidden;
   }
   .navbar{
     display: flex;
@@ -47,11 +49,11 @@
       display: none;
   }
   
-  .navbar li :hover::before{
-    width: 70px;
+  /* .navbar li :hover::before{
+    width: 120px;
     height: 1px;
     background-color:  lightblue;  
-  }
+  } */
   
   .logo{
     margin-right: 50px;
@@ -96,9 +98,11 @@
     #toggler,
   .navbar img{
     display: block;
+    
   }
   .navbar{
     height: auto;
+    position:fixed;
   }
     
     .list{
@@ -114,3 +118,6 @@
     }
   
   }
+
+
+ 

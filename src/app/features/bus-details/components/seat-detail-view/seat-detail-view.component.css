@@ -5,6 +5,7 @@
     
     overflow: scroll;
 }
+
 .header{
     display: flex;
     flex-wrap: wrap;
@@ -33,15 +34,20 @@ img{
     margin-right: 15%;
 }
 .seat{
-    max-width: 50px;
+    max-width: 90px;
     text-align: center;
-    height: 35px;
+    height: 40px;
     border: 1px solid #ccc;
     align-content: center;
-    
+    width:50px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  
+    text-align: center;
     background-color: grey;
     border-top-right-radius: 13px;
-    padding: 10px;
+    padding: 15px;
     color: white;
     cursor: pointer;
 }
@@ -53,3 +59,6 @@ img{
     margin-right: 40px;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}

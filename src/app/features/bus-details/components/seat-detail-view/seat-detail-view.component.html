@@ -1,8 +1,9 @@
+<app-confirm-seats-summary [bookingSummary]="selectedSeats" [bus]="busDetails"></app-confirm-seats-summary>
 <div class="container">
     <p style="font-weight: bold;">Select Your Seats</p>
   <div class="header">
-      <div >
-          Selected:<span class="seat selected"  >A1</span>
+      <div  >
+          Selected:<span class="seat selected" style="height: 10px; width: 10px;" >A1</span>
       </div>
       <div >
         Available:<span class="seat Available"  >A1</span>
@@ -23,7 +24,7 @@
         
         
         <div class="row" >
-            <div  class="col col-1 seat" disabled="true"  *ngFor="let seat of Seats;" (click)="addSeatDetails($event);toggleSelectedSeats($event)"   [ngStyle]="isSeatSelected(seat.id)?{'background-color': 'blue'}: seat.booked ? {'background-color': 'grey','pointer-events': 'none'}:{'background-color': 'green'}"  >{{seat.id}}</div>
+            <div  class="col col-1 seat" disabled="true"  *ngFor="let seat of Seats;" (click)="addSeatDetails($event);toggleSelectedSeats($event)"  [ngStyle]="isSeatSelected(seat.id)?{'background-color': 'blue'}: seat.booked ? {'background-color': 'grey','pointer-events': 'none'}:{'background-color': 'green'}"  >{{seat.id}}</div>
         </div>
         <hr>
         <div class="row" >
@@ -37,4 +38,3 @@
     </div>
 </div>   
 </div>
-<app-confirm-seats-summary [bookingSummary]="selectedSeats" [bus]="busDetails"></app-confirm-seats-summary>

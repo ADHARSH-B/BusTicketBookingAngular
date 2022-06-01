@@ -1,29 +1,45 @@
 <div class="backdrop" *ngIf="showSignUpForm"></div>
-<div id="SignUpform" *ngIf="showSignUpForm" >
-           
-    <form  class="container" [formGroup]="signUpForm"  >
-     
-      <div id="close" class="container-close" (click)="signUpFormToggleHandler()">&times;</div>
-      
-      <img
-        src="../../../assets/MyBUS.png"
-        alt="image">
-      <div class="container-text" >
-        <h2>Welcome to <em>MyBus</em>.com <br></h2>
-        <p>Sign up to book tickets,  and  get 15% Offer on all of your  bookings.</p>
-         <!-- <form class="container-text" id="login" onsubmit="event.preventDefault();submitHandler(this)">  -->
-          <input type="text" class="form-control" formControlName='name' name="name" placeholder="Name">   
-          <input type="text" class="form-control" formControlName='userName' name="userName" placeholder="userName">   
-          <input type="email" class="form-control" formControlName='email' name="email" placeholder="Email address">
-            <input type="password" class="form-control" formControlName='password' name="password" placeholder="Password">
-            <input type="password" class="form-control" formControlName='confirmPassword' name="confirmPassword" placeholder="ConfirmPassword">
-       
-        <button type="submit" class=" btn btn-dark" (click)="signUpFormToggleHandler()" >SignUp</button>
-       
-        <div class="footer">
-       <h6 class="mb-1" >Already have an account ?</h6>
-       <span><button class=" btn btn-dark"  (click)="loginFormToggleHandler();signUpFormToggleHandler()"  >Sign In</button></span>
-        </div>
+<div id="SignUpform" *ngIf="showSignUpForm">
+
+  <form class="container" [formGroup]="signUpForm">
+
+    <div id="close" class="container-close" (click)="signUpFormToggleHandler()">&times;</div>
+
+    <img src="../../../assets/MyBUS.png" alt="image">
+    <div class="container-text">
+      <h2>Welcome to <em>MyBus</em>.com <br></h2>
+      <p>Sign up to book tickets, and get 15% Offer on all of your bookings.</p>
+      <!-- <form class="container-text" id="login" onsubmit="event.preventDefault();submitHandler(this)"> 
+         -->
+         <code *ngIf="(signUpFormControl.name.touched || submitted) && signUpFormControl.name.errors?.required">
+          Name is required</code>
+      <input type="text" class="form-control" formControlName='name' name="name" placeholder="Name">
+      <code *ngIf="(signUpFormControl.userName.touched || submitted) && signUpFormControl.userName.errors?.required">
+        userName is required</code>
+      <input type="text" class="form-control" formControlName='userName' name="userName" placeholder="Username">
+      <code *ngIf="(signUpFormControl.email.touched || submitted) && signUpFormControl.email.errors?.required">
+        Email is required</code>
+        <code *ngIf="(signUpFormControl.email.touched || submitted) && signUpFormControl.email.errors?.email">
+          Ivalid Email</code>
+      <input type="email" class="form-control" formControlName='email' name="email" placeholder="Email address">
+      <code *ngIf="(signUpFormControl.password.touched || submitted) && signUpFormControl.password.errors?.required">
+        password is required</code>
+      <!-- <code *ngIf="signUpFormControl.password.errors?.pattern">
+            Password must contain more than 8 characters, 1 numeric, 1 upper case letter, and 1 special character($@$!%*?&).</code>
+       -->
+      <input type="password" class="form-control" formControlName='password' name="password" placeholder="Password">
+      <code *ngIf="(signUpFormControl.confirmPassword.touched || submitted) && signUpFormControl.confirmPassword.errors?.required">
+        confirmPassword is required</code>
+      <input type="password" class="form-control" formControlName='confirmPassword' name="confirmPassword"
+        placeholder="ConfirmPassword">
+
+      <button type="submit" class=" btn btn-dark" (click)="signUp()">SignUp</button>
+
+      <div class="footer">
+        <h6 class="mb-1">Already have an account ?</h6>
+        <span><button class=" btn btn-dark" (click)="loginFormToggleHandler();signUpFormToggleHandler()">Sign
+            In</button></span>
       </div>
-      </form>
+    </div>
+  </form>
 </div>

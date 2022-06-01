@@ -3,6 +3,7 @@ import { BusServiceService } from './../../../../core/service/components/bus/bus
 import { UiServiceService } from "../../../../core/service/components/ui/ui-service.service";
 import { Component, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import jwtDecode from 'jwt-decode';
 
 @Component({
   selector: 'app-confirm-seats-summary',
@@ -13,10 +14,12 @@ export class ConfirmSeatsSummaryComponent implements OnInit {
   showBookingsSummary:boolean=false;
   @Input() bookingSummary!:any;
   @Input() bus!:any;
+  booking=false
   user!:any;
   constructor(private uiService:UiServiceService,private busService:BusServiceService
     ,private toast:ToastrService) { 
     this.uiService.onToggleBookingSummary().subscribe(value=>{
+      console.log(value)
       console.log("booking summary called",this.bookingSummary)
       this.showBookingsSummary=value})
   }
@@ -28,6 +31,9 @@ export class ConfirmSeatsSummaryComponent implements OnInit {
     console.log("im checking",new Date(x).getDay())
     return new DateAndTime().getWeekDay(new Date(x).getDay());
   }
+  getDay(x:any){
+    return x.split('-')[2]
+  }
 
   ngOnInit(): void {
     console.log(this.bus)
@@ -37,27 +43,43 @@ export class ConfirmSeatsSummaryComponent implements OnInit {
   }
   canShowBookingsSummarys(){
     console.log(this.bookingSummary)
-    
-    this.uiService.toggleshowBookingSummary() 
+    this.booking=false
+    this.uiService.toggleshowBookingSummary()
   }
   showPassengerDetailForm(){
     this.uiService.toggelCheckOut();
   }
-  bookTicket(){
+  bookTicket(price:any){
     
-    this.uiService.ontoggleShowPassengerForm();
-    // this.user=jwtDecode(localStorage.getItem("authtoken")!)
-    // console.log(this.user.sub)
-    // let obj={
-    //   seats:this.bookingSummary,
-    //   busId:this.bus.id,
-    //   userName:this.user.sub
-    // }
-    // console.log(obj)
-    // this.busService.bookTicket(obj).subscribe(data=>{
-    //   this.toast.success("Your Ticket is Booked")
-    //   console.log('Tickets Booked');
-    // })
+    // this.uiService.ontoggleShowPassengerForm();
+    try{
+    this.user=jwtDecode(localStorage.getItem("authtoken")!)
+    }
+    catch(error){
+      this.toast.error("Please login to book your ticket")
+      return
+    }
+    if(this.user==null){
+      this.toast.error("Please login to book your ticket")
+      console.log("hi")
+      return
+    }
+    this.booking=true
+    console.log(this.user.sub)
+    let obj={
+      seats:this.bookingSummary,
+      busId:this.bus.id,
+      userName:this.user.sub,
+      totalCost:price*this.bookingSummary.length
+    }
+    console.log(obj)
+    this.busService.bookTicket(obj).subscribe(data=>{
+     
+      this.canShowBookingsSummarys();
+      this.toast.success("Your Ticket is Booked")
+      console.log('Tickets Booked');
+      this.uiService.refreshRequired().next()
+    })
   }
 }
 
@@ -92,6 +114,7 @@ class DateAndTime{
               return "Invalid Day"
       }
   }
+ 
   
   getMonth(x:any):String{
       switch(x){

@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class BusDetailsEditComponent implements OnInit {
   showBusEditForm!:boolean;
   editForm!:any;
-  busDetails:any
+  busDetails:any;
+  loading=false
   constructor(private adminService:AdminService, private uiService:UiServiceService,private route:ActivatedRoute,private router:Router
     ,private toast:ToastrService) { 
     this.uiService.ontogglebusDetailsEditForm().subscribe(data=>this.showBusEditForm=data)
@@ -31,6 +32,8 @@ export class BusDetailsEditComponent implements OnInit {
             seatType:new FormControl(this.busDetails?.busSeats[0].seatType,[Validators.required]),
             // BusType:new FormControl(this.busDetails?.busType,[Validators.required]),
             DepartureTime:new FormControl(this.busDetails?.departureTime,[Validators.required]),
+            ArrivalDate:new FormControl(this.busDetails?.arrivalDate,[Validators.required]),
+            DepartureDate:new FormControl(this.busDetails?.departureDate,[Validators.required]),
             ArrivalTime:new FormControl(this.busDetails?.arrivalTime,[Validators.required]),
             AddSeats:new FormControl(0,[Validators.required]),
             busType:new FormControl(this.busDetails?.busType,[Validators.required]),
@@ -49,12 +52,37 @@ export class BusDetailsEditComponent implements OnInit {
     
   }
   updateForm(busid:any){
-    this.adminService.updateBusDetails(busid,this.editForm.value).subscribe(data=>{
-      this.toast.success("Bus Details Updation Success!")
-      // console.log("updating done")
-      // this.router.navigate(['/admin-dashboard'])
+    this.loading=true
+    this.adminService.updateBusDetails(busid,this.editForm.value).subscribe({
+      next:data=>{
+        // 
+        
+        this.toast.success("Bus Details Updation Success!")
+        this.loading=false
+        this.uiService.togglebusDetailsEditForm();
+        // setTimeout(()=>{
+        //   this.uiService.refreshRequired().next()
+        // })
+        
+        // console.log("updating done")
+        // this.router.navigate(['/admin-dashboard'])
+      },
+      error:data=>{
+        this.loading=false
+        this.uiService.togglebusDetailsEditForm();
+        if(data.error.message){
+          this.toast.error("Please Add Route !! "+data.error.message+" :(")
+          // this.toast.error("Please Add Route")
+          return
+        }
+        this.loading=false
+        this.uiService.togglebusDetailsEditForm();
+        this.toast.error("Route Updation Failed")
+
+      }
     })
   }
+  
   }
 
 

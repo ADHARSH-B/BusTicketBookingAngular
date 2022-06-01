@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BusDetailsViewComponent } from './components/bus-details-view/bus-details-view.component';
@@ -26,7 +27,8 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ToastrModule .forRoot(),
-    FormModule
+    FormModule,
+    SharedModule
     // DateConverterPipePipe
     // SpinnerCircularModule 
   ],

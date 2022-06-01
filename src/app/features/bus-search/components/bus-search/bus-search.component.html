@@ -7,10 +7,26 @@
 <form [formGroup]="busSearchForm" >
     <div class="row">
         <div class="col col-4">
-            <input type="text" formControlName="Departure" class="form-control" placeholder="Departure"/>
+            <input type="text" list="programmingLanguages" formControlName="Departure" class="form-control" placeholder="Departure"/>
+            <datalist id="programmingLanguages"  >
+               
+                <option   value={{location}} *ngFor="let location of boardingPoint">{{location}}</option>
+            
+            </datalist>
+        </div>
+        <div>
         </div>
         <div class="col col-4">
-          <input type="text"  formControlName="Return" class="form-control" placeholder="Return"/>
+            <input type="text" list="programmingLanguages"  formControlName="Return" class="form-control" placeholder="Return"/>
+            <datalist id="programmingLanguages" >
+
+                    <option   value={{location}} *ngFor="let location of arrivalPoint">{{location}}</option>
+               
+            </datalist>
+          <!-- <input type="text"  formControlName="Return" class="form-control" placeholder="Return"/>
+          <datalist id="programmingLanguages" >
+            <option value={{location.boardingPoint}} *ngFor="let location of routes">{{location.boardingPoint}}</option>
+        </datalist>  -->
         </div>
      
         <div class="col col-4">

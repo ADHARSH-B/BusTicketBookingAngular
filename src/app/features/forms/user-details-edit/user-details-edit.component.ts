@@ -15,6 +15,7 @@ export class UserDetailsEditComponent implements OnInit {
   @Input() canShow!:any;
   editForm:any;
   userDetails:any;
+  loading=false
   constructor(private uiService:UiServiceService,private route:ActivatedRoute,private router:Router,
     private adminService:AdminService,private toast:ToastrService) { 
     
@@ -22,6 +23,11 @@ export class UserDetailsEditComponent implements OnInit {
     this.route.queryParams.subscribe(data=>{
       if(data["userid"]!=undefined){
         console.log(data)
+        // this.uiService.refreshBusDetails().subscribe({
+        //   next:(response)=>{
+            
+        //    }
+        // })
         this.adminService.getUser(data["userid"]).subscribe(user=>{
           console.log("fetched",user)
           this.userDetails=user
@@ -29,7 +35,7 @@ export class UserDetailsEditComponent implements OnInit {
             email:new FormControl(this.userDetails?.email,[Validators.required]),
             name:new FormControl(this.userDetails?.name,[Validators.required]),
             userName: new FormControl (this.userDetails?.userName,[Validators.required]),
-            role:new FormControl(null,[Validators.required])
+            role:new FormControl(this.userDetails?.roles[0].name,[Validators.required])
             });
         })
       }})
@@ -39,10 +45,15 @@ export class UserDetailsEditComponent implements OnInit {
     
 
   }
+
   updateForm(){
+    this.loading=true
     this.adminService.updateUser(this.userDetails?.id,this.editForm.get('userName').value,
     this.editForm.get('name').value,this.editForm.get('role').value,this.editForm.get("email").value).subscribe(data=>{
+     this.loading=false
       this.toast.success("User Updation Success")
+      this.uiService.refreshRequired().next()
+      this.uiService.toggleuserDetailsEditForm();
     })
   }
   toggleFormView(){

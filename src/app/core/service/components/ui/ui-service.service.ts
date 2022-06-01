@@ -5,135 +5,155 @@ import jwtDecode from 'jwt-decode';
   providedIn: 'root'
 })
 export class UiServiceService {
- 
-  private showSignInForm:boolean=false;
-  private showSignUpForm:boolean=false;
-  private showPassengerForm:boolean=false;
-  private showPassengerFormSubject=new Subject<any>();
-  private signInsubject=new Subject<any>()
-  private signUpsubject=new Subject<any>()
-  private showBookingSummary:boolean=false;
-  private showBookingSummarysubject=new Subject<any>()
-  private checkOut:boolean=false;
-  private checkOutsubject=new Subject<any>()
-  private userDetailsEditForm:boolean=false;
-  private userDetailsEditFormSubject=new Subject<any>();
-  private busDetailsEditForm:boolean=false;
-  private busDetailsEditFormSubject=new Subject<any>();
-  private busDetailsAddForm:boolean=false;
-  private busDetailsAddSubject=new Subject<any>();
-  private _refreshRequired=new Subject<void>();
-  private _userbusDetailsRefresh=new Subject<void>();
-  private isAdminLoggenIn=false;
-  private isAdminLoggenInSubject=new Subject<boolean>();
-  private addStationForm=false;
-  private addStationSubject=new Subject<boolean>();
-  private isLoggenIn=false;
-  private isLoggenInSubject=new Subject<boolean>();
-  
+
+  private showSignInForm: boolean = false;
+  private showSignUpForm: boolean = false;
+  private showPassengerForm: boolean = false;
+  private showPassengerFormSubject = new Subject<any>();
+  private signInsubject = new Subject<any>()
+  private signUpsubject = new Subject<any>()
+  private showBookingSummary: boolean = false;
+  private showBookingSummarysubject = new Subject<any>()
+  private checkOut: boolean = false;
+  private checkOutsubject = new Subject<any>()
+  private userDetailsEditForm: boolean = false;
+  private userDetailsEditFormSubject = new Subject<any>();
+  private busDetailsEditForm: boolean = false;
+  private busDetailsEditFormSubject = new Subject<any>();
+  private busDetailsAddForm: boolean = false;
+  private busDetailsAddSubject = new Subject<any>();
+  private _refreshRequired = new Subject<void>();
+  private _userbusDetailsRefresh = new Subject<void>();
+  private isAdminLoggenIn = false;
+  private isAdminLoggenInSubject = new Subject<boolean>();
+  private addStationForm = false;
+  private addStationSubject = new Subject<boolean>();
+  private isLoggenIn = false;
+  private isLoggenInSubject = new Subject<boolean>();
+  private passwordRequestForm: boolean = false;
+  private passwordRequestFormSubject = new Subject<any>();
+  private showSidebar=false;
+  private showSidebarSubject=new Subject<any>();
   constructor() { }
-  toggleAddStation(){
-    return  this.addStationSubject.asObservable();
+
+  toggleSideBar(){
+    return this.showSidebarSubject.asObservable()
   }
-  ontoggleAddStation(){
-     this.addStationForm=!this.addStationForm;
-     this.addStationSubject.next(this.addStationForm);
+  onToggleSidebar(){
+    this.showSidebar=!this.showSidebar
+    this.showSidebarSubject.next(this.showSidebar)
   }
-  toggleIsAdminLoggenIn(){
+  togglePasswordRequestForm(){
+    return this.passwordRequestFormSubject.asObservable()
+  }
+  onTogglePassWordRequestForm(){
+    this.passwordRequestForm=!this.passwordRequestForm;
+    this.passwordRequestFormSubject.next(this.passwordRequestForm)
+  }
+
+  toggleAddStation() {
+    return this.addStationSubject.asObservable();
+  }
+  ontoggleAddStation() {
+    this.addStationForm = !this.addStationForm;
+    this.addStationSubject.next(this.addStationForm);
+  }
+  toggleIsAdminLoggenIn() {
     return this.isAdminLoggenInSubject.asObservable()
   }
-  toggleShowPassengerForm(){
+  toggleShowPassengerForm() {
     return this.showPassengerFormSubject.asObservable();
   }
-  ontoggleShowPassengerForm(){
-    this.showPassengerForm=!this.showPassengerForm
+  ontoggleShowPassengerForm() {
+    this.showPassengerForm = !this.showPassengerForm
     this.showPassengerFormSubject.next(this.showPassengerForm)
   }
-  toggleIsLoggenIn(){
+  toggleIsLoggenIn() {
     return this.isLoggenInSubject.asObservable()
   }
-  ontoggleIsLoggenIn(){
-    this.isLoggenIn=!this.isLoggenIn
+  ontoggleIsLoggenIn() {
+    this.isLoggenIn = !this.isLoggenIn
     return this.isLoggenInSubject.next(this.isLoggenIn)
   }
-  onToggleIsAdminLoggenIn(){
-    const token =localStorage.getItem("authtoken");
-     console.log(jwtDecode(token!))
+  onToggleIsAdminLoggenIn() {
+    const token = localStorage.getItem("authtoken");
+    console.log(jwtDecode(token!))
+    1652381375
     // this.isAdminLoggenInSubject.next(this.isAdminLoggenIn)
-    if(token!=undefined && token !=null){
-      const decryptedToken:any=jwtDecode(token!)
+    if (token != undefined && token != null) {
+      const decryptedToken: any = jwtDecode(token!)
       // console.log(decryptedToken)
-      decryptedToken["role"].forEach((r: { authority: string; })=>{
-        if(r.authority=="ADMIN"){
+      decryptedToken["role"].forEach((r: { authority: string; }) => {
+        if (r.authority == "ADMIN") {
           this.isAdminLoggenInSubject.next(true)
         }
       })
     }
-    
+
   }
-  refreshBusDetails(){
+  refreshBusDetails() {
     return this._userbusDetailsRefresh
   }
-  refreshRequired(){
+  refreshRequired() {
     return this._refreshRequired;
   }
 
-  togglebusDetailsAddForm(){
-    this.busDetailsAddForm=!this.busDetailsAddForm
+  togglebusDetailsAddForm() {
+    this.busDetailsAddForm = !this.busDetailsAddForm
     this.busDetailsAddSubject.next(this.busDetailsAddForm);
   }
-  ontogglebusDetailsAddForm(){
+  ontogglebusDetailsAddForm() {
     return this.busDetailsAddSubject.asObservable();
   }
 
-  togglebusDetailsEditForm(){
-    this.busDetailsEditForm=!this.busDetailsEditForm;
+  togglebusDetailsEditForm() {
+    this.busDetailsEditForm = !this.busDetailsEditForm;
     this.busDetailsEditFormSubject.next(this.busDetailsEditForm);
   }
 
-  ontogglebusDetailsEditForm(){
+  ontogglebusDetailsEditForm() {
     // console.log('called')
     return this.busDetailsEditFormSubject.asObservable();
   }
 
-  toggleuserDetailsEditForm(){
-    this. userDetailsEditForm=!this. userDetailsEditForm;
-    this. userDetailsEditFormSubject.next(this.userDetailsEditForm);
+  toggleuserDetailsEditForm() {
+    this.userDetailsEditForm = !this.userDetailsEditForm;
+    this.userDetailsEditFormSubject.next(this.userDetailsEditForm);
   }
-  ontoggleuserDetailsEditForm(){
+  ontoggleuserDetailsEditForm() {
     console.log(this.userDetailsEditForm)
     return this.userDetailsEditFormSubject.asObservable();
   }
 
-  toggleShowSigninForm(){
-    this.showSignInForm=!this.showSignInForm;
+  toggleShowSigninForm() {
+    this.showSignInForm = !this.showSignInForm;
     this.signInsubject.next(this.showSignInForm)
   }
-  onToggleSignIn(){
+  onToggleSignIn() {
     return this.signInsubject.asObservable()
   }
-  toggleShowSignUpForm(){
-    this.showSignUpForm=!this.showSignUpForm;
+  toggleShowSignUpForm() {
+    this.showSignUpForm = !this.showSignUpForm;
     this.signUpsubject.next(this.showSignUpForm)
   }
-  onToggleSignUp(){
+  onToggleSignUp() {
     return this.signUpsubject.asObservable()
   }
 
-  onToggleBookingSummary(){
+  onToggleBookingSummary() {
     return this.showBookingSummarysubject.asObservable()
   }
 
-  toggleshowBookingSummary(){
-    this.showBookingSummary=!this.showBookingSummary;
+  toggleshowBookingSummary() {
+    this.showBookingSummary = !this.showBookingSummary;
     this.showBookingSummarysubject.next(this.showBookingSummary);
   }
-  onToggleCheckout(){
+  onToggleCheckout() {
     return this.checkOutsubject.asObservable();
   }
 
-  toggelCheckOut(){
-    this.checkOut=!this.checkOut;
+  toggelCheckOut() {
+    this.checkOut = !this.checkOut;
     this.checkOutsubject.next(this.checkOut);
   }
 }

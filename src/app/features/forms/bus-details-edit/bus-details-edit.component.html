@@ -48,10 +48,11 @@
                 <div class="col col-6">
                     <div class="form-group">
                         <label for="exampleFormControlInput1">TotalSeats</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="totalSeats" placeholder="UserName" [value]="busDetails?.totalSeats">
+                        <input type="number" class="form-control" id="exampleFormControlInput1" formControlName="totalSeats" placeholder="UserName" [value]="busDetails?.totalSeats" min="0" max="1/0">
                       </div>
                 </div>
             </div>
+           
             <div class="row">
                 <div class="col col-6">
                     <div class="form-group">
@@ -63,6 +64,20 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1"> ArrivalTime</label>
                         <input type="time" class="form-control" id="exampleFormControlInput1" formControlName="ArrivalTime" placeholder="UserName" [value]="busDetails?.arrivalTime">
+                    </div>   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> DepartureDate</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="DepartureDate" placeholder="UserName" [value]="busDetails?.departureDate">
+                      </div>
+                </div>
+                <div class="col col-6">         
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> ArrivalDate</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="ArrivalDate" placeholder="UserName" [value]="busDetails?.departureDate">
                     </div>   
                 </div>
             </div>
@@ -84,8 +99,8 @@
             
               <div class="form-group ">
                   <button type="button"  class="btn btn-sm btn-outline-danger mt-4 float-right " (click)="toggleFormView()" >Cancel </button>
-                  <button type="button"  class="btn btn-sm btn-outline-dark mt-4 float-right" style="margin-right: 4px;" (click)="updateForm(busDetails?.id)" >Update </button>
-                
+                  <button type="button" *ngIf="!loading" class="btn btn-sm btn-outline-dark mt-4 float-right" style="margin-right: 4px;" (click)="updateForm(busDetails?.id)" >Update </button>
+                  <button type="button" *ngIf="loading" class="btn btn-sm btn-outline-dark mt-4 float-right" style="margin-right: 4px;"  >Updating Please Wait .. </button>
               </div>
               <br>
            

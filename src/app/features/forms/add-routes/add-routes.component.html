@@ -28,8 +28,8 @@
                       <span *ngFor="let station of stations" class="badge badge-pill badge-primary" style="margin-right:2px">{{station}}</span>
                 </div>
                 <div class="col col-12">
-                    <button class="btn btn-dark mb-4 float-right" (click)="addRoute()">AddRoute</button>
-                 
+                    <button *ngIf="!loading" class="btn btn-dark mb-4 float-right" (click)="addRoute()">AddRoute</button>
+                    <button *ngIf="loading" class="btn btn-dark mb-4 float-right" (click)="addRoute()">Adding Please Wait..</button>
                 </div>
                 
 

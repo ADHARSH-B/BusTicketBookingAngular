@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -7,6 +8,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { FormModule } from '../forms/form.module';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { BusRouteDetailsComponent } from './bus-route/bus-route-details/bus-route-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 const routes: Routes = [
@@ -29,6 +31,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    SharedModule,
+    ReactiveFormsModule,
     FormModule
   ],
   exports:[

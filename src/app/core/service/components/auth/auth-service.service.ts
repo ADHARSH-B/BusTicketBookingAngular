@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
+import { globalVars } from 'src/app/shared/url.model';
+import { UiServiceService } from '../ui/ui-service.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private uiService:UiServiceService) { }
   private isAdminLoggenIn=false;
   private isAdminLoggenInSubject=new Subject<boolean>();
 
-  loginapi:string="http://localhost:8080/api/v1/auth/signin"
-  signupapi:string="http://localhost:8080/api/v1/auth/signup"
+  backendHost=globalVars.backendAPI
+
+  reset_Password_Request:string=`${this.backendHost}api/v1/auth/reset-password-request`
+  loginapi:string=`${this.backendHost}api/v1/auth/signin`
+  signupapi:string=`${this.backendHost}api/v1/auth/signup`
+  changePaasword=`${this.backendHost}api/v1/auth/changePassword`
+  
   toggleIsAdminLoggenIn(){
     return this.isAdminLoggenInSubject.asObservable()
   }
@@ -26,6 +33,14 @@ export class AuthServiceService {
     return this.http.post<any>(this.loginapi,form,{'headers':headers})
   }
   signupUser(form:any){
-    return this.http.post<any>(this.signupapi,form)
+    const headers={ 'content-type': 'application/json'}
+    console.log(form)
+    return this.http.post<any>(this.signupapi,form,{'headers':headers})
+  }
+  resetPasswordRequest(form:any){
+    return this.http.post<any>(this.reset_Password_Request,form)
+  }
+  changePassword(form:any){
+    return this.http.post<any>(this.changePaasword,form)
   }
 }

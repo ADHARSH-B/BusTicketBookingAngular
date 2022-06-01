@@ -2,12 +2,13 @@
     place-items: center;
     z-index: 6; 
     position: absolute;
-    left: 40%;
+    left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
     padding: 20px;  
     width: 50vw;
     padding: 20px;
+    /* margin-top: 170px; */
     /* overflow: scroll; */
     /* height: 100px; */
     /* max-width: 500px;
@@ -43,9 +44,12 @@ input{
  
  
   
-  @media  screen and (max-width:750px){
+@media  screen and (max-width:750px){
     #loginform {
         width: 90vw;
+        /* margin-top: -50px; */
+        left: 50%;
+        top:50%
     }
 
   
@@ -62,6 +66,20 @@ input{
   
      100% {
       top: 5px;
+    }
+  }
+  @keyframes formmovedown1{
+    0% {
+      top: 10%;
+    }
+    25%{
+      top:20%;
+    }
+    60%{
+      top:30%
+    }
+     100% {
+      top: 40%;
     }
   }
   @keyframes formmoveup{

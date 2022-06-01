@@ -1,62 +1,86 @@
 <div class="grid" style="margin-top: 50px;">
+   
     <div class="row" >
-      <div class="col col-2">
-        <app-sidenav></app-sidenav>
-      </div>
-      <div class="col col-10 card"  >
+        <div    class="sidebars col col-md-2 col-6 " [ngStyle]="canShowSidebar?{'display':'grid'}:{'display':'none'}">
+            <app-sidenav></app-sidenav>
+          </div>
+          <div class="col col-0 col-md-2">
+           
+        </div>
+       
+      <div class="col col-12 col-md-10 "  >
         <div class="grid" >
-            <div class="row">
-                <div class="col col-12 ">
-                    <button class="btn btn-dark p-1 float-right mb-2 mt-2 " (click)="addStation()">AddRoute</button>
-                    <app-add-routes></app-add-routes>
+            
+            <div class="row " >
+                <div class="toggler">
+                <div  class="col col-3 p-1" >
+                    <i class="fas fa-bars fa-2x p-2" (click)="togglingSidebar()"></i>
+                   </div>
+                </div>
+                
+                
+                <div class="col col-3 mt-2 ml-2">
+                    <input type="text" placeholder="Departure"
+            class="form-control p-2" #ref1 (change)="setBoardingPoint(ref1.value)"/>
+                </div>
+                <div class="col col-3 mt-2 ml-2">
+                    <input type="text" placeholder="Arrival"
+            class="form-control p-2" #ref2 (change)="setArrivalPoint(ref2.value)"/>
+          
+                </div>
+                <div class="btn btn-2 mt-2">
+                    <button class="btn btn-outline-dark p-1 ml-2" (click)="fliterByBoardingAndDestination()">Search</button>
+                </div>
+                <div  class="col col-lg-2 p-1  ">
+                    <button class="btn btn-dark p-1  mb-2 mt-2 float-right" (click)="addStation()">AddRoute</button>
+                 
                 </div>
             </div>
-            <div class="row">
+            <app-add-routes></app-add-routes>
+            <div *ngIf="loading && routeDetails.length==0">
+                <app-loader></app-loader>
+            </div>
+            <div *ngIf="!loading && routeDetails.length==0">
+                <div class="card d-flex align-items-center p-4 ml-2 mr-2 mt-4" style="width: 97%;font-weight: bold;">
+                  No Routes Found :(
+                </div>
+              </div>
+            <div class="row" *ngIf="routeDetails.length>0" style="width: 100%;"> 
                 <div class="col col-12">
-                    <table class="table ">
+                    <table class="table table-responsive  " style=" width: 100%;" >
                         <thead class="bg-light">
                         <tr>
-                            <th>Departure</th>
-                            <th>Arrival</th>
-                            <th>Stations</th>
-                            <th>Actions</th>
+                            <th class="pr-4">RouteId</th>
+                            <th class="pr-4">Departure</th>
+                            <th class="pr-4">Arrival</th>
+                            <th class="pr-4">Stations</th>
+                            <th class="pr-4">Status</th>
                         </tr>
                        </thead>
                        <tbody>
                        <tr *ngFor="let route of routeDetails"  >
+                        <td >
+                            <p class="fw-normal mb-1 pr-5" >{{route.id}} </p>
                         
+                        </td>
                             
                         <td >
-                            <p class="fw-normal mb-1" >{{route.boardingPoint |uppercase}} </p>
+                            <p class="fw-normal mb-1 pr-5" >{{route.boardingPoint |uppercase}} </p>
                         
                         </td>
-                        <td>
-                            <p class="fw-normal mb-1" >{{route.destinationPoint |uppercase}}</p>
+                        <td >
+                            <p class="fw-normal mb-1 pr-5 pr-10" >{{route.destinationPoint |uppercase}}</p>
                         </td>
                         <td>
-                        <span *ngFor="let station of route.stations" >
-                            {{station.stationname |uppercase}},
+                        <span class="pr-5" *ngFor="let station of route.stations" >
+                            {{station.stationname |uppercase}} 
                         </span> 
                         </td>
     
     
-                        <td>
-                            <button 
-                            style="margin-right: 1%;" 
-                            type="button" 
-                            class="btn btn-primary btn-sm btn-rounded p-1"
-                        >
-                            Edit 
-                        </button>
-                        <button
-                            type="button"
-                            class="btn btn-danger btn-sm btn-rounded p-1"
-                        
-                            >
-                            Delete
-                        </button>
-                        </td>
-    
+                            <td class="p-3">
+                                <span class="badge badge-success rounded-pill d-inline p-1">Active</span>
+                              </td>
                         
                     </tr>
                     </tbody>

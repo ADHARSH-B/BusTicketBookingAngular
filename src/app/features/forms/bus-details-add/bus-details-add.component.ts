@@ -13,7 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 export class BusDetailsAddComponent implements OnInit {
   showBusAddForm!:boolean;
   addForm!:any;
-  busDetails:any
+  busDetails:any;
+  loading=false;
+  submitted:boolean=false;
   constructor(private adminService:AdminService, private uiService:UiServiceService,private route:ActivatedRoute,private router:Router
     ,private toast:ToastrService) {
     
@@ -33,7 +35,7 @@ export class BusDetailsAddComponent implements OnInit {
             // BusType:new FormControl(this.busDetails?.busType,[Validators.required]),
             DepartureTime:new FormControl(null,[Validators.required]),
             ArrivalTime:new FormControl(null,[Validators.required]),
-            AddSeats:new FormControl(0,[Validators.required]),
+            ArrivalDate:new FormControl(0,[Validators.required]),
             busType:new FormControl(null,[Validators.required]),
             price:new FormControl(null,[Validators.required])
             });     
@@ -41,16 +43,28 @@ export class BusDetailsAddComponent implements OnInit {
   ngOnInit(): void {
     
   }
+  get addFormControl(){
+    return this.addForm.controls
+  }
   toggleAddBusFormView(){
     this.uiService.togglebusDetailsAddForm();
     // this.uiService.ontogglebusDetailsAddForm().subscribe(data=>console.log(data))
     // this.router.navigateByUrl('/admin-dashboard')
   }
   addBus(){
-    // console.log(this.addForm.value)
+    this.submitted=true
+    
+    if(this.addForm.status=="INVALID"){
+      this.toast.error("Please enter all the fields to add bus")
+      return
+    }
+    this.loading=true
     this.adminService.addBus(this.addForm.value).subscribe(data=>{
+      
+      this.loading=false
       this.toast.success("Bus Added Success !!")
-      console.log(data)
+      // this.uiService.refreshRequired().next()
+      this.uiService.togglebusDetailsAddForm()
     })
   }
 

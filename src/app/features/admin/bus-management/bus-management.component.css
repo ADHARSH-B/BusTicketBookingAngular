@@ -1,28 +1,69 @@
-.card{
+.card {
     /* padding: 20px; */
     /* width:10vw; */
-    /* overflow: scroll; */
-/* /overflow-x: hidden; */
+ box-sizing: border-box;
     
+    /* overflow-x: hidden; */
+    width: 90vw;
+    /* /overflow-x: hidden; */
+
 }
 
-*{
+* {
     padding: 0px;
-    margin:0px
+    margin: 0px;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.container-fluid {
+    margin-top: 50px;
+}
+.backdrop {
+    /* backdrop-filter: blur(5px); */
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2 !important;
+    background: black;
+    opacity: 0.5;
+    width: 100vw;
+}
+
+.sidebar {
+    background-color: #00001e;
+    color: white;
+    height: 100%;
+}
+
+.sidebar div {
+    padding: 20px;
+    cursor: pointer;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+.sidebars{
+    z-index: 5;
+    position: absolute;
+}
+
+@media screen and (min-width:900px) {
+    .toggler{
+        display: none;
     }
-    .container-fluid{
-        margin-top: 50px;
+}
+@media screen and (max-width:900px) {
+    .sidebars{
+        display: none;
     }
-    .sidebar{
-        background-color:#00001e ;
-        color: white;
-        height: 100vh;
-    }
-    .sidebar div{
-        padding: 20px;
-        cursor: pointer;
-    }
-    .link{
-        text-decoration: none;
-        color: white;
-    }
+}
+
+html,body {
+    width: 100%;
+    overflow-x: hidden;
+}

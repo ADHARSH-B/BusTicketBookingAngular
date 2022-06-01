@@ -1,16 +1,23 @@
+<div class="loader" *ngIf="loading" style=" margin-top: 180px; width:50px;height:50px">Loading...</div>
+<div *ngIf="!loading && bookings.length==0">
+<div class="card d-flex align-items-center p-4 ml-2 mr-2" style="margin-top: 70px;font-weight: bold;">
+No Bookings Found :(
+</div>
+</div>
 <div class="container "  style="width:90vw;" *ngFor="let booking of bookings" >
+   
     <div class="grid ">
-        <div class="row">
+        <div class="row p-2">
             <div class="col">
                 <small>Booking-id<span class="text-muted fw-normal"> :{{booking.id}}</span></small>
             </div>              
          </div>
-         <div class="row ">
+         <div class="row p-1 ">
           
              <div class="col col-md-2 p-2 ">
                 <i class="fa fa-area-chart"></i>
                 <small>{{booking.busDetails.boardingPoint |uppercase }}</small>
-                <p style="font-weight: bold; font-size: 12px;">May 7,2022</p>
+                <p style="font-weight: bold; font-size: 12px;">{{getWeekDay(booking.busDetails.departureDate)}}, {{getDay(booking.busDetails.departureDate)}} {{getMonth(booking.busDetails.departureDate)}} 2022</p>
                      <hr>
              </div>
              <div class="col col-md-2 p-3">
@@ -25,7 +32,7 @@
                 <i class="fa fa-area-chart"></i>
                 <small>{{booking.busDetails.destinationPoint | uppercase}}</small>
                 
-                <p style="font-weight: bold; font-size: 12px;">May 7,2022</p>
+                <p style="font-weight: bold; font-size: 12px;">{{getWeekDay(booking.busDetails.arrivalDate)}}, {{getDay(booking.busDetails.arrivalDate)}} {{getMonth(booking.busDetails.arrivalDate)}} 2022</p>
                
                 <hr>
               </div>
@@ -35,7 +42,7 @@
              
               
          </div>
-         <div class="row ">
+         <div class="row p-1">
              <div class="col col-md-2 p-2">
                   <small><span class="text-muted">BusOperatorName: </span> <span style="font-weight:bold"> {{booking.busDetails.busName }} </span></small>
              </div>
@@ -51,11 +58,20 @@
         <div class="col col-md-2 p-2">
             <small><span class="text-muted">TotalCost: </span> <span style="font-weight:bold">Rs {{booking.totalCost}} /-</span></small>
         </div>
-
+        <div class="col col-md-2 mt-1 p-2">
+            <div >
+                <small *ngIf="viewticketId==booking.id"><button class="btn btn-sm btn-outline-dark" >Loading...</button></small>
+                <small *ngIf="viewticketId!=booking.id"><button class="btn btn-sm btn-outline-dark" (click)="viewTicket(booking.id)">View Ticket</button></small>
+  
+            </div>
+        </div>
          </div>
-        <div class="row ">
-            <div class="col col-md-6 p-2">
+        <div class="row p-1">
+            <div class="col col-md-2 p-2">
                 <small><span class="text-muted">BoardingStatus: </span>  <span class="badge  badge-success">Boarded</span></small>
+           </div>
+           <div class="col col-md-4 p-2">
+            <small><span class="text-muted">BookingDate: </span><span style="font-weight:bold">{{getBookingDate(booking.bookingDate)}}</span> </small>
            </div>
            <div class="col col-md-2 ">
             <small> <span class="text-muted">TotalSeatsBooked: </span>  <span style="font-weight:bold"> {{booking.bookedSeats.length}} </span></small>
@@ -64,17 +80,15 @@
             <small>  <span class="text-muted">Payment-Status: </span> <span class="badge  badge-success">Paid</span></small>
            </div>
            <div class="col col-md-2 mb-2">
-            <div style="display: flex; justify-content: center; align-items: center; flex-flow: column; gap:10px ">
-                <small><button class="btn btn-sm btn-outline-dark">View Ticket</button></small>
-                <small><span class="text-muted">BookingStatus: </span>  <span class="badge  badge-success">Confirmed</span></small>
-  
-            </div>
-        </div>
+            <div >
+           <small><span class="text-muted">BookingStatus: </span>  <span class="badge  badge-success">Confirmed</span></small>
+           </div>
         </div>
       
     </div>
 
 </div>
+<!-- style="display: flex; justify-content: center; align-items: center; flex-flow: column; gap:10px " -->
 <!-- 
  <div  *ngFor="let booking of bookings;let i=index"  class="container">
     <div class="grid">

@@ -25,7 +25,9 @@
 .container {
     background-color: #fff;
     width: 750px;
-    height: 550px;
+    min-height: 550px;
+    max-height: 700px;
+    height: auto;
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr ;

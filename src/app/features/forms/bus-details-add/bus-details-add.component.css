@@ -1,9 +1,13 @@
 #loginform {
     place-items: center;
     z-index: 6; 
-    position: absolute;
-    left: 40%;
+    position:absolute;
+    left: 50%;
     top: 50%;
+    height: auto;
+    /* margin-top: -50px; */
+    /* margin-top: 170px; */
+   
     transform: translate(-50%,-50%);
     padding: 20px;  
     width: 50vw;
@@ -35,7 +39,7 @@ input{
     border-radius: 20px;
     background-color: #fff;
     position: relative;
-    animation: formmovedown 1s 1;
+    animation: formmovedown1 1s 1;
     /* height: 100px; */
     animation-timing-function:  linear;
 }
@@ -46,22 +50,29 @@ input{
   @media  screen and (max-width:750px){
     #loginform {
         width: 90vw;
+        /* margin-top: -50px; */
+        position: absolute;
+        height: auto;
+    left: 50%;
+    top: 50%;
     }
 
   
   }
   
   
-  @keyframes formmovedown{
+  @keyframes formmovedown1{
     0% {
-      top: -70px;
+      top: 10%;
     }
-    50%{
-      top:-20px;
+    25%{
+      top:20%;
     }
-  
+    60%{
+      top:30%
+    }
      100% {
-      top: 5px;
+      top: 40%;
     }
   }
   @keyframes formmoveup{

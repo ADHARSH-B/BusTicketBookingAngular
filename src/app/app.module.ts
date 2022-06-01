@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 import { SpinnerCircularModule } from 'spinners-angular/spinner-circular';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {GooglePayButtonModule} from '@google-pay/button-angular'
+import {SocialLoginModule} from "angularx-social-login"
 // import { DateConverterPipePipe } from 'src/app/shared/components/pipes/date-converter-pipe.pipe';
 // import { FontAwesomeModule } from '@fontawesome/angular-fontawesome'
 //  import { BusDetailsViewComponent } from './features/busDetails/components/bus-details-view/bus-details-view.component';
@@ -30,11 +32,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule ,
     FeaturesModule,
     CommonModule,
+    SocialLoginModule,
     HttpClientModule,
     ReactiveFormsModule,
     SpinnerCircularModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    GooglePayButtonModule,
     // DateConverterPipePipe,
     // FontAwesomeModule
     // FormsModule,
